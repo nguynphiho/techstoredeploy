@@ -1,6 +1,7 @@
 {
   "name": "techstore",
   "version": "0.1.0",
+  "homepage": "https://nguynphiho.github.io",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.4",
@@ -10,6 +11,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "clsx": "^1.1.1",
+    "gh-pages": "^4.0.0",
     "npm": "^8.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,7 +26,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
