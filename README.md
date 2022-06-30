@@ -68,3 +68,16 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+  // const [swiper, setSwiper] = React.useState(null);
+
+  // const slideTo = (index) => {
+  //   if (swiper){
+  //     swiper.slideTo(index)
+  //   }
+  // };
+
+  // console.log(swiper)
+  // const handleNextSlide = () => {
+  //   slideTo(1);
+  // }
