@@ -3,13 +3,17 @@ import { Drawer, IconButton, makeStyles, Typography, Button, Badge } from '@mate
 import ShopIcon from '@material-ui/icons/Shop';
 import CloseIcon from '@material-ui/icons/Close';
 import CartItem from 'components/CartItem';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { productCarts } from 'redux/cart/selector';
 import ToCurrency from 'Utils/FormatNumber';
+import { useWindowSize } from 'hooks/input.hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     position: 'relative',
+  },
+  drawer: {
+    zIndex: 999999,
   },
 
   cart: {
@@ -37,7 +41,10 @@ const useStyles = makeStyles(() => ({
   },
 
   shoppingCart: {
-    width: 450,
+    width: '450px',
+    [theme.breakpoints.down("xs")]: {
+      width: (props) => props.width,
+    },
     height: '100%',
     backgroundColor: '#f3f3f3',
     boxShadow: '0px 0px 15px rgba(15, 23, 42, 0.5)',
@@ -73,7 +80,7 @@ const useStyles = makeStyles(() => ({
     height: 'calc(100% - 260px)',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
-      width: 10,
+      width: 3,
     },
 
     '&::-webkit-scrollbar-track': {
@@ -175,18 +182,17 @@ const useStyles = makeStyles(() => ({
 }));
 
 function CartDrawer({ openDrawer, closeCart }) {
-  const classes = useStyles();
+  const [width] = useWindowSize();
+  const classes = useStyles({width});
   const [isOpen, setOpen] = React.useState(false);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const cart = useSelector(productCarts);
 
   const subTotal = cart.reduce((total, currentValue) => {
     return total + currentValue.totalPrice;
   },0 )
-
-  console.log("cart from cartDrawer: " + cart);
 
   const handleToggleDrawer = (value) => {
     setOpen(value);
@@ -215,7 +221,7 @@ function CartDrawer({ openDrawer, closeCart }) {
         )
       }
 
-      <Drawer anchor="right" open={isOpen} onClose={() => handleToggleDrawer(false)}>
+      <Drawer anchor="right" open={isOpen} onClose={() => handleToggleDrawer(false)} className={classes.drawer}>
         <div className={classes.shoppingCart}>
           <div className={classes.shopingCartHeader}>
             <ShopIcon className={classes.icon} />

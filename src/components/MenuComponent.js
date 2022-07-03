@@ -7,6 +7,9 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   contianer: {
     background: 'white',
+    [theme.breakpoints.down("sm")]: {
+      display: 'none',
+    },
   },
   menuContainer: {
     display: 'flex',
@@ -37,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     background: 'white',
     boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.2)',
-    borderRadius: '0px 0px 6px 6px',
     zIndex: 9999,
 
   },
@@ -86,7 +88,8 @@ function MenuComponent({ data, location }) {
     setHover("")
   };
 
-  const handleNavigate = (link) => {
+  const handleNavigate = (event,link) => {
+    event.stopPropagation();
     history.push(link);
   };
 
@@ -121,7 +124,7 @@ function MenuComponent({ data, location }) {
                       && item.subMenu.map(sub => (
                         <div key={sub.id}>
                           <Button
-                            onClick={()=>handleNavigate(sub.link)}
+                            onClick={(event)=>handleNavigate(event, sub.link)}
                             className={clsx(classes.buttonSubMenu, {
                               [classes.active]: location.includes(sub.link),
                             })}

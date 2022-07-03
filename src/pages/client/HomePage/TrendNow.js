@@ -15,6 +15,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import ProductCard from 'components/ProductCard';
 import { productsData } from '../../FakeData';
+import TwoRowProducts from 'components/TwoRowProducts';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   iconButton: {
-    fontSize: 12,
+    fontSize: 10,
   },
 
   navButton: {
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'none',
     fontSize: '14px',
     fontFamily: 'Lato',
-    minWidth: 100,
+    minWidth: 30,
     '&.Mui-selected': {
       color: '#df971a',
     },
@@ -60,10 +61,6 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiTabs-flexContainer': {
       justifyContent: 'flex-end',
     },
-  },
-
-  swiper: {
-    paddingBottom: 30,
   },
 
   productItem: {
@@ -124,13 +121,14 @@ function TrendNow() {
         <Grid
           container
           item
+          xs={12}
           sm={12}
           md={12}
           lg={9}
-          justifyContent="space-between"
           alignItems="center"
+          justifyContent="space-between"
         >
-          <Grid item sm={10}>
+          <Grid item xs={9} sm={10}>
             <div className={classes.root}>
               <AppBar position="static" className={classes.appBar}>
                 <Tabs
@@ -151,7 +149,7 @@ function TrendNow() {
               </AppBar>
             </div>
           </Grid>
-          <Grid container item sm={2} md={2} lg={2} justifyContent="flex-end">
+          <Grid container item xs={3} sm={2} md={2} lg={2} justifyContent="flex-end">
             <Grid item>
               <IconButton ref={navigationPrevRef} className={classes.navButton}>
                 <ArrowBackIosIcon className={classes.iconButton} />
@@ -167,121 +165,13 @@ function TrendNow() {
       </Grid>
       <Grid container>
         <TabPanel value={value} index={0}>
-          <Swiper
-            slidesPerView={4}
-            grid={{
-              fill: 'row',
-              rows: 2,
-            }}
-            navigation={{
-              // Both prevEl & nextEl are null at render so this does not work
-              prevEl: navigationPrevRef.current,
-              nextEl: navigationNextRef.current,
-            }}
-            className={classes.swiper}
-            onSwiper={(swiper) => {
-              // Delay execution for the refs to be defined
-              setTimeout(() => {
-                // Override prevEl & nextEl now that refs are defined
-                swiper.params.navigation.prevEl = navigationPrevRef.current
-                swiper.params.navigation.nextEl = navigationNextRef.current
-
-                // Re-init navigation
-                swiper.navigation.destroy()
-                swiper.navigation.init()
-                swiper.navigation.update()
-              })
-            }}
-            // navigation={true}
-            scrollbar={{ draggable: true }}
-            modules={[Navigation, Grids]}
-          >
-            {
-              productsData.map(item => (
-                <SwiperSlide key={item.id}>
-                  <ProductCard data={item} />
-                </SwiperSlide>
-              ))
-            }
-          </Swiper>
+          <TwoRowProducts data={productsData} nextButtonRef={navigationNextRef} prevButtonRef={navigationPrevRef} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Swiper
-            slidesPerView={4}
-            grid={{
-              fill: 'row',
-              rows: 2,
-            }}
-            navigation={{
-              // Both prevEl & nextEl are null at render so this does not work
-              prevEl: navigationPrevRef.current,
-              nextEl: navigationNextRef.current,
-            }}
-            className={classes.swiper}
-            onSwiper={(swiper) => {
-              // Delay execution for the refs to be defined
-              setTimeout(() => {
-                // Override prevEl & nextEl now that refs are defined
-                swiper.params.navigation.prevEl = navigationPrevRef.current
-                swiper.params.navigation.nextEl = navigationNextRef.current
-
-                // Re-init navigation
-                swiper.navigation.destroy()
-                swiper.navigation.init()
-                swiper.navigation.update()
-              })
-            }}
-            // navigation={true}
-            scrollbar={{ draggable: true }}
-            modules={[Navigation, Grids]}
-          >
-            {
-              productsData.map(item => (
-                <SwiperSlide key={item.id}>
-                  <ProductCard data={item} />
-                </SwiperSlide>
-              ))
-            }
-          </Swiper>
+          <TwoRowProducts data={productsData} nextButtonRef={navigationNextRef} prevButtonRef={navigationPrevRef} />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Swiper
-            slidesPerView={4}
-            grid={{
-              fill: 'row',
-              rows: 2,
-            }}
-            navigation={{
-              // Both prevEl & nextEl are null at render so this does not work
-              prevEl: navigationPrevRef.current,
-              nextEl: navigationNextRef.current,
-            }}
-            className={classes.swiper}
-            onSwiper={(swiper) => {
-              // Delay execution for the refs to be defined
-              setTimeout(() => {
-                // Override prevEl & nextEl now that refs are defined
-                swiper.params.navigation.prevEl = navigationPrevRef.current
-                swiper.params.navigation.nextEl = navigationNextRef.current
-
-                // Re-init navigation
-                swiper.navigation.destroy()
-                swiper.navigation.init()
-                swiper.navigation.update()
-              })
-            }}
-            // navigation={true}
-            scrollbar={{ draggable: true }}
-            modules={[Navigation, Grids]}
-          >
-            {
-              productsData.map(item => (
-                <SwiperSlide key={item.id}>
-                  <ProductCard data={item} />
-                </SwiperSlide>
-              ))
-            }
-          </Swiper>
+          <TwoRowProducts data={productsData} nextButtonRef={navigationNextRef} prevButtonRef={navigationPrevRef} />
         </TabPanel>
       </Grid>
     </div>

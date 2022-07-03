@@ -1,7 +1,8 @@
+import FixedMenu from 'components/FixedMenu';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Body from './body/Body';
-import CartButton from './CartDrawer/CartDrawer';
+import CartDrawer from './CartDrawer/CartDrawer';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Menu from './menu/Menu';
@@ -27,12 +28,13 @@ function MainClientPage( props ) {
   return (
     <div>
       <Header openCart={(value) => handleOpenCart(value)}/>
+      <FixedMenu location={location.pathname}/>
       <Menu location={location.pathname}/>
       <Body location={location.pathname}>
         {props.children}
       </Body>
       <Footer location={location.pathname}/>
-      <CartButton openDrawer={() => handleOpenDrawer(open)} closeCart={(value) => handleCloseCart(value)}/>
+      <CartDrawer openDrawer={() => handleOpenDrawer(open)} closeCart={(value) => handleCloseCart(value)}/>
     </div>
   )
 }

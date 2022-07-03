@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     },
     '& .MuiListItemText-primary': {
       fontSize: 16,
+      [theme.breakpoints.down("md")]: {
+        fontSize: 14,
+      },
       fontFamily: 'Lato',
       fontWeight: 400,
       color: 'white',
@@ -25,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
   nested: {
     '& .MuiListItemText-primary': {
       fontSize: 15,
+      [theme.breakpoints.down("md")]: {
+        fontSize: 12,
+      },
       fontWeight: 400,
       color: '#686868',
       '&:hover': {
@@ -93,7 +99,9 @@ function ListComponent({ name, data, location }) {
     setHover("")
   };
 
-  const handleNavigate = (link) => {
+  const handleNavigate = (event, link) => {
+    console.log(event);
+    event.stopPropagation();
     history.push(link);
   };
 
@@ -143,7 +151,7 @@ function ListComponent({ name, data, location }) {
                       />
                       {item.subItem.length > 0 && <ArrowForwardIosIcon style={{ color: '#686868', fontSize: 14 }} />}
                     </ListItem>
-                    <div 
+                    <div
                       className={clsx(classes.subMenuContainer, {
                         [classes.myEffect]: openSub,
                       })}
@@ -152,15 +160,15 @@ function ListComponent({ name, data, location }) {
                         openSub &&
                         item.subItem.map(sub => (
                           <div key={sub.id}>
-                            <ListItem 
+                            <ListItem
                               button
-                              onClick={() => handleNavigate(sub.link)}
+                              onClick={(event) => handleNavigate(event, sub.link)}
                             >
                               <ListItemText
                                 primary={sub.label}
                                 className={clsx(classes.listItemText, {
                                   [classes.active]: location.includes(sub.link),
-                                })}        
+                                })}
                               />
                             </ListItem>
                           </div>

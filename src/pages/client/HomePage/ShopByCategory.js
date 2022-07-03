@@ -2,9 +2,10 @@ import "swiper/css";
 
 import React from 'react';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
-import CategoryCard from 'components/CategoryCard';
-
 import { Swiper, SwiperSlide } from "swiper/react";
+import CategoryCard from 'components/CategoryCard';
+import { useWindowSize } from 'hooks/input.hooks';
+
 
 
 import category1 from 'assets/images/category-img-1-woo-slider.png';
@@ -13,9 +14,16 @@ import category3 from 'assets/images/category-img-6-woo-slider.png';
 import category4 from 'assets/images/category-image-3-wooo-slider.png';
 import category5 from 'assets/images/category-image-5-woo-slider.png';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
 
+  },
+
+  swiper: {
+    width: '100%',
+    [theme.breakpoints.down("sm")]: {
+      width: (props) => (props.width -50),
+    },
   },
 
   title: {
@@ -61,7 +69,8 @@ const categoryData = [
 ]
 
 function ShopByCategory() {
-  const classes = useStyles();
+  const [width] = useWindowSize();
+  const classes = useStyles({ width });
   return (
     <div className={classes.container}>
       <Grid container>
@@ -73,7 +82,23 @@ function ShopByCategory() {
         <Swiper
           slidesPerView={5}
           spaceBetween={30}
-          className="mySwiper"
+          breakpoints={{
+              300: {
+                slidesPerView: 2,
+              },
+              640: {
+                slidesPerView: 3,
+              },
+
+              768: {
+                slidesPerView: 4,
+              },
+
+              1024: {
+                slidesPerView: 5,
+              },
+            }}
+          className={classes.swiper}
         >
         {
           categoryData.map(item => (

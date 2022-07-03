@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Checkbox, FormControlLabel, makeStyles, TextField, Typography, withStyles } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: 20,
     padding: 10,
@@ -39,7 +39,10 @@ const useStyles = makeStyles(() => ({
   },
 
   textField: {
-    width: '50%',
+    width: '60%',
+    [theme.breakpoints.down("xs")]: {
+      width: '100%',
+    },
     background: 'white',
     borderRadius: '4px !important',
     color: '#0096C7',
@@ -60,6 +63,9 @@ const useStyles = makeStyles(() => ({
   saveInfoCheck: {
     marginBottom: 10,
     width: '50%',
+    [theme.breakpoints.down("sm")]: {
+      width: '100%',
+    },
     '& .MuiFormControlLabel-label': {
       fontSize: 14,
       fontFamily: 'Lato',

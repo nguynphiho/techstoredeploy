@@ -44,7 +44,6 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     boxShadow: '0px 10px 15px -3px rgba(15, 23, 42, 0.08)',
   },

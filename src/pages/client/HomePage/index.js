@@ -11,7 +11,7 @@ import Brand from './Brand';
 
 import { productsData } from '../../FakeData';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
   },
   cardContainer: {
@@ -26,6 +26,11 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     padding: 10,
     background: "#f4a51c",
+    [theme.breakpoints.down("xs")]: {
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   },
 
   offerText: {
@@ -34,6 +39,7 @@ const useStyles = makeStyles(() => ({
     color: 'white',
     fontWeight: 600,
     letterSpacing: 2,
+    
   },
   button: {
     textTransform: 'none',
@@ -43,7 +49,10 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       color: '#f4a51c',
       background: '#f3f3f3f3',
-    }
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: 10,
+    },
   },
 }))
 

@@ -13,14 +13,18 @@ import { FreeMode, Navigation, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import QuantityComponent from './QuantityComponent';
+import { useWindowSize } from 'hooks/input.hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     position: 'relative',
     display: 'flex',
     background: 'white',
     boxShadow: '0px 10px 15px -3px rgba(15, 23, 42, 0.08)',
     padding: 10,
+    [theme.breakpoints.down("xs")]: {
+      flexWrap: 'wrap',
+    },
   },
 
   status: {
@@ -43,11 +47,21 @@ const useStyles = makeStyles(() => ({
 
   imageContainer: {
     display: 'flex',
+    [theme.breakpoints.down("xs")]: {
+      flexWrap: 'wrap-reverse',
+    },
   },
   imgThumb: {
-    display: 'flex',
-    flexDirection: 'column',
+    [theme.breakpoints.down("xs")]: {
+      width: '100%',
+    },
+    '& .swiper-slide': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   },
+
   thumbItem: {
     opacity: 0.5,
     width: 60,
@@ -67,6 +81,10 @@ const useStyles = makeStyles(() => ({
   selectedImage: {
     width: 350,
     height: 350,
+    [theme.breakpoints.down("md")]: {
+      width: 300,
+      height: 300,
+    },
     overflow: 'hidden',
     '& img': {
       width: 'inherit',
@@ -122,10 +140,21 @@ const useStyles = makeStyles(() => ({
   },
 
   buttonContainer: {
-    marginTop: 20,
+    marginTop: 10,
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
+    columnGap: 20,
+    rowGap: 15,
     alignItems: 'center',
+    flexWrap: 'wrap'
+  },
+
+  groupIconButton: {
+    display: 'flex',
+    minWidth: 140,
+    // padding: '10px 0px',
+    justifyContent: 'flex-start',
+    columnGap: 20,
   },
 
   addtocartBtn: {
@@ -146,10 +175,11 @@ const useStyles = makeStyles(() => ({
 }))
 
 function ProductCardDetail({ data }) {
+  const [width] = useWindowSize();
   const classes = useStyles();
   const [thumbsSwiper, setThumbsSwiper] = React.useState(null);
   const [indexActive, setIndexActive] = React.useState(0);
-
+  console.log(classes)
   const handleOnSlideChange = (swiper) => {
     setIndexActive(swiper.activeIndex);
   };
@@ -170,7 +200,7 @@ function ProductCardDetail({ data }) {
           freeMode={true}
           slidesPerGroup={1}
           watchSlidesProgress={true}
-          direction="vertical"
+          direction={width > 640 ? "vertical" : "horizontal"}
           modules={[FreeMode, Navigation, Thumbs]}
           className={classes.imgThumb}>
           <SwiperSlide>
@@ -271,12 +301,14 @@ function ProductCardDetail({ data }) {
         <div className={classes.buttonContainer}>
           <QuantityComponent />
           <Button className={classes.addtocartBtn}> Add to cart </Button>
-          <IconButton className={classes.iconButton} >
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton className={classes.iconButton}>
-            <CompareIcon />
-          </IconButton>
+          <div className={classes.groupIconButton}>
+            <IconButton className={classes.iconButton} >
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton className={classes.iconButton}>
+              <CompareIcon />
+            </IconButton>
+          </div>
         </div>
       </div>
     </div >

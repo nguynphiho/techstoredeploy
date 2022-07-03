@@ -1,5 +1,6 @@
-import { Grid, IconButton, makeStyles } from '@material-ui/core';
+import { Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
+import MenuIcon from '@material-ui/icons/Menu';
 import React from 'react';
 
 import MenuComponent from 'components/MenuComponent';
@@ -10,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   callButton: {
-    marginRight: 10,
+    marginRight: 20,
     background: '#f4a51c',
     '&:hover': {
       background: '#df971a',
@@ -23,6 +24,18 @@ const useStyles = makeStyles((theme) => ({
   contact: {
     display: 'flex',
     alignItems: 'center',
+  },
+
+  phoneNumber: {
+    [theme.breakpoints.down("xs")]: {
+      display: 'none',
+    },
+  },
+
+  iconMenu: {
+    [theme.breakpoints.up("md")]: {
+      display: 'none',
+    },
   },
 
 }))
@@ -125,18 +138,23 @@ function Menu({ location }) {
 
   return (
     <div className={classes.contianer}>
-      <Grid container>
+      <Grid container style={{ padding: 5 }}>
         <Grid
           item
-          sm={10}
+          xs={10}
+          sm={9}
           md={10}
           lg={10}
         >
           <MenuComponent data={menuData} location={location}/>
+          <IconButton className={classes.iconMenu}>
+            <MenuIcon />
+          </IconButton>
         </Grid>
         <Grid
           item
-          sm={2}
+          xs={2}
+          sm={3}
           md={2}
           lg={2}
           className={classes.contact}
@@ -144,7 +162,7 @@ function Menu({ location }) {
           <IconButton className={classes.callButton}>
             <PhoneInTalkIcon style={{ color: 'white' }} />
           </IconButton>
-          +8435 2642 497
+          <Typography className={classes.phoneNumber}>+8435 2642 497</Typography>
         </Grid>
       </Grid>
     </div>

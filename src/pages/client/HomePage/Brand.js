@@ -8,6 +8,7 @@ import { Grid, IconButton, makeStyles } from '@material-ui/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper";
 import clsx from 'clsx';
+import { useWindowSize } from 'hooks/input.hooks';
 
 import brand1 from 'assets/images/amazon.png';
 import brand4 from 'assets/images/apple.png';
@@ -16,7 +17,7 @@ import brand5 from 'assets/images/sony.png';
 import brand3 from 'assets/images/windows.png';
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
 
   },
@@ -64,6 +65,10 @@ const useStyles = makeStyles(() => ({
   swiper: {
     position: 'relative',
     margin: '0px 10px',
+    width: '100%',
+    [theme.breakpoints.down("sm")]: {
+      width: (props) => (props.width -50),
+    },
   },
 }));
 
@@ -101,7 +106,8 @@ const brandData = [
 ]
 
 function Brand() {
-  const classes = useStyles();
+  const [width] = useWindowSize();
+  const classes = useStyles({ width });
   const navigationPrevRef = React.useRef(null)
   const navigationNextRef = React.useRef(null)
   return (
@@ -129,6 +135,26 @@ function Brand() {
             })
           }}
           slidesPerView={5}
+          breakpoints={{
+            300: {
+              slidesPerView: 2,
+            },
+            640: {
+              slidesPerView: 3,
+            },
+
+            768: {
+              slidesPerView: 3,
+            },
+
+            1024: {
+              slidesPerView: 4,
+            },
+
+            1200: {
+              slidesPerView: 5,
+            }
+          }}
           spaceBetween={30}
           modules={[Navigation]}
           className={classes.swiper}

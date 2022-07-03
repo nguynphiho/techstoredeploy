@@ -8,13 +8,20 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import slideImage1 from 'assets/images/camera-circle-new.png';
 import slideImage2 from 'assets/images/slider-watches-1-1.png';
+import { useWindowSize } from 'hooks/input.hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   slide: {
     height: '100%',
     width: '100%',
+    objectFit: 'contain',
   },
   swiper: {
+    width: '100%',
+    [theme.breakpoints.down("sm")]: {
+      width: (props) => (props.width -20),
+    },
+    height: '100%',
     '& .swiper-pagination-bullet': {
       height: 12,
       width: 12,
@@ -22,16 +29,16 @@ const useStyles = makeStyles(() => ({
     '& .swiper-pagination-bullet-active': {
       background: 'black'
     },
-  }
+  },
 }))
 
 function BannerSlide() {
-  const classes = useStyles();
+  const [width] = useWindowSize();
+  const classes = useStyles({ width });
   return (
     <>
       <Swiper
         className={classes.swiper}
-        // onSwiper={setSwiper}
         spaceBetween={3}
         pagination={{
           clickable: true,
@@ -41,6 +48,7 @@ function BannerSlide() {
           disableOnInteraction: false,
         }}
         loop={true}
+        autoHeight={true}
         modules={[Pagination, Autoplay]}
       >
         <SwiperSlide>

@@ -65,6 +65,10 @@ const useStyles = makeStyles(() => ({
     },
   },
 
+  buttonContainer: {
+    marginTop: 10,
+  },
+
 }));
 
 const breadcrumbsList = {
@@ -91,7 +95,7 @@ function ShoppageHeader({ onHorizontal, amountOfProduct }) {
         alignItems="center"
         justifyContent="space-between"
         style={{
-          marginBottom: 20,
+          marginBottom: 10,
         }}
       >
         <Grid item className={classes.headerTitle}>Archives: Products</Grid>
@@ -110,7 +114,9 @@ function ShoppageHeader({ onHorizontal, amountOfProduct }) {
         <Grid item>
           <Typography className={classes.productInfo}>Showing 1-16 of {amountOfProduct} results</Typography>
         </Grid>
-        <Grid item>
+        <Grid item
+          className={classes.buttonContainer}
+        >
           <Button
             onClick={() => handleSetHorizontal(false)}
             variant="contained"

@@ -29,19 +29,30 @@ import ListComponent from '../../../components/ListComponent';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    margin: 20,
+    margin: 10,
   },
 
   leftSideBar: {
-
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    }
   },
 
   rightSideBar: {
-
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    }
   },
 
   bodyContent: {
 
+  },
+
+  options: {
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    }
   },
 
 }))
@@ -262,14 +273,14 @@ function Body({ children, location }) {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item md={2} lg={2} className={classes.leftSideBar}>
           <ListComponent name="Category" data={categoryData} location={location} />
           <PopularCard data={popularData} name={"Popular"} />
           <TagCloud data={TagCloudData} />
           <Banner />
         </Grid>
-        <Grid item md={8} lg={8} className={classes.bodyContent}>
+        <Grid item sm={12} md={8} lg={8} className={classes.bodyContent}>
           {children}
         </Grid>
         <Grid item md={2} lg={2} className={classes.rightSideBar}>
@@ -278,6 +289,18 @@ function Body({ children, location }) {
           <StoreUpdate />
           <ShowCase />
         </Grid>
+
+        {/* <Grid item className={classes.options}>
+          <ListComponent name="Category" data={categoryData} location={location} />
+          <PopularCard data={popularData} name={"Popular"} />
+          <TagCloud data={TagCloudData} />
+          <Banner />
+
+          <StoreWidget />
+          <AboutCard />
+          <StoreUpdate />
+          <ShowCase />
+        </Grid> */}
       </Grid>
     </div>
   )

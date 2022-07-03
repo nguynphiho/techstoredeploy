@@ -4,15 +4,12 @@ import { Button, makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(() => ({
   container: {
     display: 'flex',
-    width: 140,
     height: 40,
-    border: 'solid 1px #686868',
   },
 
   button: {
     minWidth: 40,
-    borderRight: 'solid 1px #686868',
-    borderLeft: 'solid 1px #686868',
+    border: 'solid 1px #686868',
     borderRadius: 0,
     fontSize: 20,
     fontFamily: 'Lato',
@@ -21,10 +18,11 @@ const useStyles = makeStyles(() => ({
   },
 
   input: {
-    width: 60,
+    borderTop: 'solid 1px #686868',
+    borderBottom: 'solid 1px #686868',
+    width: 50,
     textAlign: 'center',
     padding: 0,
-    paddingLeft: 15,
     outline: 'none',
     border: 'none',
     fontSize: 18,
@@ -39,7 +37,7 @@ function QuantityComponent() {
 
   const handleDecrease = () => {
     setQuantity((prevValue) => {
-      if (prevValue > 1){
+      if (prevValue > 1) {
         return --prevValue
       } else {
         return 1;
@@ -51,18 +49,18 @@ function QuantityComponent() {
     setQuantity(prevValue => ++prevValue)
   };
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     console.log(quantity);
-  },[quantity]);
-  
+  }, [quantity]);
+
   return (
     <div className={classes.container}>
       <Button className={classes.button} onClick={handleDecrease}>-</Button>
       <input
-        type="number"
         value={quantity}
         readOnly
-        className={classes.input} 
+        className={classes.input}
+        variant="outlined"
       />
       <Button className={classes.button} onClick={handleIncrease}>+</Button>
     </div>

@@ -32,7 +32,9 @@ function ShopPage() {
           productsData.map(item => (
             <Grid 
               item
-              xs={isHorizontal ? 12 : 3}
+              xs={isHorizontal ? 12 : 6}
+              md={isHorizontal ? 12 : 4}
+              lg={isHorizontal ? 12 : 3}
               key={item.id}
             >
               <ProductCard data={item} horizontal={isHorizontal}/>

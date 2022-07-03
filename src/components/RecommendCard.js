@@ -1,6 +1,8 @@
 import React from 'react';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 import ItemProductRecommend from './ItemProductRecommend';
+import clsx from 'clsx';
+import { useWindowSize } from 'hooks/input.hooks';
 
 const useStyles = makeStyles(() => ({
   recommendContainer: {
@@ -20,12 +22,20 @@ const useStyles = makeStyles(() => ({
 
 function RecommendCard({ name, data }) {
   const classes = useStyles();
+  const [windowsWidth] = useWindowSize();
+  const [containerWidth, setContainerWidth] = React.useState(0);
+
+  React.useEffect(() => {
+    const container = document.querySelector(`.${name}`);
+    setContainerWidth(container.offsetWidth);
+  },[name, windowsWidth])
+  
   return (
-    <div className={classes.recommendContainer}>
+    <div className={clsx(classes.recommendContainer, name)}>
       <Typography className={classes.title}> {name } </Typography>
       <Grid container>
         {data.map(item => (
-          <ItemProductRecommend item={item} myClass={name} key={item.id}/>
+          <ItemProductRecommend item={item} key={item.id} containerWidth={containerWidth} />
         ))}
       </Grid>
     </div>

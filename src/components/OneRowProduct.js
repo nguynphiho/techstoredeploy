@@ -10,6 +10,8 @@ import {
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ProductCard from "components/ProductCard";
+import { useWindowSize } from 'hooks/input.hooks';
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -43,12 +45,17 @@ const useStyles = makeStyles((theme) => ({
 
   mySwiper: {
     paddingBottom: 40,
+    width: '100%',
+    [theme.breakpoints.down("sm")]: {
+      width: (props) => (props.width -50),
+    },
   },
 
 }));
 
 function OneRowProduct({ data, title }) {
-  const classes = useStyles();
+  const [width] = useWindowSize();
+  const classes = useStyles({ width });
   const navigationPrevRef = React.useRef(null)
   const navigationNextRef = React.useRef(null)
 
@@ -56,10 +63,10 @@ function OneRowProduct({ data, title }) {
   return (
     <div className={classes.container}>
       <Grid container alignItems="center" justifyContent="space-between">
-        <Grid item sm={12} md={3} lg={3}>
+        <Grid item xs={9} sm={10} md={3} lg={3}>
           <Typography className={classes.title}>{title}</Typography>
         </Grid>
-        <Grid container item sm={2} md={2} lg={2} justifyContent="flex-end">
+        <Grid container item xs={3} sm={2} md={2} lg={2} justifyContent="flex-end">
           <Grid item>
             <IconButton ref={navigationPrevRef} className={classes.navButton}>
               <ArrowBackIosIcon className={classes.iconButton} />
@@ -94,6 +101,23 @@ function OneRowProduct({ data, title }) {
               })
             }}
             slidesPerView={4}
+            breakpoints={{
+              300: {
+                slidesPerView: 2,
+              },
+
+              640: {
+                slidesPerView: 2,
+              },
+
+              768: {
+                slidesPerView: 3,
+              },
+
+              1024: {
+                slidesPerView: 4,
+              },
+            }}
             modules={[Navigation]}
             className={classes.mySwiper}
           >

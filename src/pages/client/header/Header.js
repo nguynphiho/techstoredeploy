@@ -1,5 +1,5 @@
 import React from 'react';
-import { 
+import {
   Avatar, Badge, Grid, IconButton,
   InputAdornment, makeStyles, TextField, Typography,
 } from '@material-ui/core';
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
   },
   headerTwo: {
-    padding: 20,
+    padding: 10,
     display: 'flex',
     alignItems: 'center',
   },
@@ -60,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
   },
   branchName: {
     fontSize: 32,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+    },
     fontWeight: 400,
     color: 'white',
     fontFamily: 'Orbitron',
@@ -67,7 +70,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   headerSearch: {
-
+    [theme.breakpoints.down('xs')]: {
+      margin: '10px 0px',
+    },
   },
 
   textField: {
@@ -96,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '&.MuiIconButton-root': {
       padding: 7,
-      borderRadius: 6 
+      borderRadius: 6
     }
   },
 
@@ -106,6 +111,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   optionItem: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     '&:not(:last-child)': {
       borderRight: 'solid 1px white',
     }
@@ -117,13 +126,15 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     fontWeight: 700,
     fontFamily: 'Anek Malayalam',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
 
   subOptionName: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
     color: 'white',
     fontSize: 16,
     fontWeight: 500,
@@ -131,7 +142,35 @@ const useStyles = makeStyles((theme) => ({
       color: '#f4a51c',
       cursor: 'pointer'
     },
-  }
+  },
+
+  cartButton: {
+    display: 'flex',
+    alignItems: 'center',
+    color: 'white',
+    '&:hover': {
+      color: '#f4a51c',
+      cursor: 'pointer'
+    },
+  },
+
+  totalPrice: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+  },
+
+  iconButton: {
+    color: 'white',
+    '&:hover': {
+      color: '#f4a51c',
+      cursor: 'pointer'
+    },
+    display: 'none',
+    [theme.breakpoints.down('md')]: {
+      display: 'block',
+    },
+  },
 
 }));
 
@@ -181,7 +220,9 @@ function Header({ openCart }) {
         <Grid
           item
           xs={12}
-          sm={3}
+          sm={4}
+          md={4}
+          lg={3}
           className={classes.branch}
         >
           <Avatar variant='square' src={storeIcon}></Avatar>
@@ -191,6 +232,8 @@ function Header({ openCart }) {
           item
           xs={12}
           sm={5}
+          md={5}
+          lg={5}
           className={classes.headerSearch}
         >
           <TextField
@@ -200,7 +243,7 @@ function Header({ openCart }) {
             InputProps={{
               endAdornment: <InputAdornment position="start">
                 <IconButton className={classes.searchButton}>
-                  <SearchIcon style={{color: 'white'}}/>
+                  <SearchIcon style={{ color: 'white' }} />
                 </IconButton>
               </InputAdornment>,
               classes: { input: classes.resize }
@@ -213,7 +256,9 @@ function Header({ openCart }) {
           container
           justifyContent='flex-end'
           xs={12}
-          sm={4}
+          sm={3}
+          md={3}
+          lg={4}
         >
           <Grid
             item
@@ -223,8 +268,10 @@ function Header({ openCart }) {
             <Typography className={classes.mainOptionName}> My Favourite </Typography>
             <Typography className={classes.subOptionName}>
               Wishlist
-              <FavoriteBorderIcon />
             </Typography>
+            <IconButton className={classes.iconButton}>
+              <FavoriteBorderIcon />
+            </IconButton>
           </Grid>
           <Grid
             item
@@ -234,8 +281,10 @@ function Header({ openCart }) {
             <Typography className={classes.mainOptionName}> Sign In/Sign Up</Typography>
             <Typography className={classes.subOptionName}>
               My Account
-              <AssignmentIndIcon />
             </Typography>
+            <IconButton className={classes.iconButton}>
+              <AssignmentIndIcon />
+            </IconButton>
           </Grid>
           <Grid
             item
@@ -243,17 +292,14 @@ function Header({ openCart }) {
             className={classes.optionItem}
             onClick={() => clickOpen(true)}
           >
-            <Typography className={classes.mainOptionName}>
-              <Badge badgeContent={1} color="secondary" overlap="rectangular">
-                Cart
-              </Badge>
-            </Typography>
-            <Typography
-              className={classes.subOptionName}
-            >
+            <Badge badgeContent={4} color="error" overlap="rectangular" className={classes.cartButton}>
               <LocalMallIcon />
-              $50.000
-            </Typography>
+              <Typography
+                className={classes.totalPrice}
+              >
+                $50.000
+              </Typography>
+            </Badge>
           </Grid>
         </Grid>
       </Grid>

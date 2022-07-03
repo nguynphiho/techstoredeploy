@@ -15,6 +15,7 @@ import product3 from 'assets/images/product25.png';
 import product2 from 'assets/images/product26.png';
 import product1 from 'assets/images/product27.png';
 import ItemProductRecommend from 'components/ItemProductRecommend';
+import { useWindowSize } from 'hooks/input.hooks';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -56,7 +57,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   swiper: {
-
+    width: '100%',
+    [theme.breakpoints.down("sm")]: {
+      width: (props) => (props.width - 50),
+    },
   },
 
 }));
@@ -146,17 +150,18 @@ const popularData = [
 
 
 function DiscoveryNow() {
-  const classes = useStyles();
+  const [width] = useWindowSize();
+  const classes = useStyles({ width });
   const navigationPrevRef = React.useRef(null)
   const navigationNextRef = React.useRef(null)
 
   return (
     <div className={classes.container}>
       <Grid container alignItems="center" justifyContent="space-between">
-        <Grid item sm={12} md={3} lg={3}>
+        <Grid item xs={9} sm={10} md={3} lg={3}>
           <Typography className={classes.title}>Discovery Now</Typography>
         </Grid>
-        <Grid container item sm={2} md={2} lg={2} justifyContent="flex-end">
+        <Grid container item xs={3} sm={2} md={2} lg={2} justifyContent="flex-end">
           <Grid item>
             <IconButton ref={navigationPrevRef} className={classes.navButton}>
               <ArrowBackIosIcon className={classes.iconButton} />
@@ -173,6 +178,41 @@ function DiscoveryNow() {
         <div className={classes.cardContainer}>
           <Swiper
             slidesPerView={4}
+            breakpoints={{
+              300: {
+                slidesPerView: 1,
+              },
+              640: {
+                slidesPerView: 2,
+                grid: {
+                  fill: 'row',
+                  rows: 2,
+                }
+              },
+
+              768: {
+                slidesPerView: 3,
+                grid: {
+                  fill: 'row',
+                  rows: 2,
+                }
+              },
+
+              1024: {
+                slidesPerView: 3,
+                grid: {
+                  fill: 'row',
+                  rows: 2,
+                }
+              },
+              1200: {
+                slidesPerView: 4,
+                grid: {
+                  fill: 'row',
+                  rows: 2,
+                }
+              }
+            }}
             grid={{
               fill: 'row',
               rows: 2,

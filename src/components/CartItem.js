@@ -77,7 +77,6 @@ function CartItem({ data }) {
   const classes = useStyles();
   const [quantity, setQuantity] = React.useState(data.quantity);
   const dispatch = useDispatch();
-  const pricePerOne = data.newPrice;
 
   const handleChangeQuality = (event) => {
     if (event.target.value > 0){

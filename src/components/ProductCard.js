@@ -13,16 +13,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addProductCart } from 'redux/cart/actions';
 
 const useStyles = makeStyles((theme) => ({
-  contianer: {
-    margin: 10,
+  container: {
+    // marginBottom: 10,
+    margin: '5px !important',
     position: 'relative',
     display: 'flex',
     background: 'white',
     flexDirection: (props) => ((props.horizontal) ? 'row' : 'column'),
     justifyContent: (props) => ((props.horizontal) ? 'flex-start' : 'center'),
+    [theme.breakpoints.down("sm")]: {
+      flexWrap: (props) => ((props.horizontal) ? 'wrap' : 'nowrap'),
+    },
 
-    width: (props) => ((props.horizontal) ? '100%' : '95%'),
-    height: (props) => ((props.horizontal) ? '300px' : 'auto'),
+    // width: (props) => ((props.horizontal) ? '100%' : '95%'),
+    // height: (props) => ((props.horizontal) ? '300px' : 'auto'),
     borderRadius: '4px 4px 0px 0px',
 
     transition: 'all ease-in-out .3s',
@@ -64,6 +68,13 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiRating-root': {
       fontSize: 16,
     },
+  },
+
+  image: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   imageContainer: {
@@ -177,7 +188,7 @@ const useStyles = makeStyles((theme) => ({
   // Horizontall;
   horizontalContentCard: {
     display: (props) => ((props.horizontal) ? 'block' : 'none'),
-    width: '60%',
+    width: '100%',
     padding: '20px',
   },
 
@@ -265,7 +276,7 @@ function ProductCard({ data, horizontal }) {
   return (
     <>
       <div
-        className={classes.contianer}
+        className={classes.container}
         onMouseOver={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={() => history.push(
@@ -284,32 +295,34 @@ function ProductCard({ data, horizontal }) {
             </div>
           )
         }
-        <div className={classes.imageContainer}>
-          <img src={data.mainImage} alt="" className={classes.img} />
-          <div className={clsx(classes.rating, {
-            [classes.fadeIn]: isHover,
-          })}>
-            <Rating name="read-only" value={data.rating} readOnly />
-          </div>
-          <div className={clsx(classes.navButton, {
-            [classes.fadeIn]: isHover,
-          })}
-          >
-            <Tooltip title="QuickView" placement="top">
-              <IconButton>
-                <SearchIcon className={classes.iconButton} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Wishlist" placement="top">
-              <IconButton>
-                <FavoriteBorderIcon className={classes.iconButton} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Compare" placement="top">
-              <IconButton>
-                <CompareIcon className={classes.iconButton} />
-              </IconButton>
-            </Tooltip>
+        <div className={classes.image}>
+          <div className={classes.imageContainer}>
+            <img src={data.mainImage} alt="" className={classes.img} />
+            <div className={clsx(classes.rating, {
+              [classes.fadeIn]: isHover,
+            })}>
+              <Rating name="read-only" value={data.rating} readOnly />
+            </div>
+            <div className={clsx(classes.navButton, {
+              [classes.fadeIn]: isHover,
+            })}
+            >
+              <Tooltip title="QuickView" placement="top">
+                <IconButton>
+                  <SearchIcon className={classes.iconButton} />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Wishlist" placement="top">
+                <IconButton>
+                  <FavoriteBorderIcon className={classes.iconButton} />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Compare" placement="top">
+                <IconButton>
+                  <CompareIcon className={classes.iconButton} />
+                </IconButton>
+              </Tooltip>
+            </div>
           </div>
         </div>
 
@@ -347,7 +360,7 @@ function ProductCard({ data, horizontal }) {
 
         <div>
           <Typography className={classes.productName}>
-            {(data.name.length > 25) ? data.name.slice(0, 20) + "..." : data.name}
+            {(data.name.length > 20) ? data.name.slice(0, 18) + "..." : data.name}
           </Typography>
         </div>
         <div className={classes.priceContainer}>

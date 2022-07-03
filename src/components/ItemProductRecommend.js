@@ -1,9 +1,9 @@
+import { Avatar, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
-import { Avatar, makeStyles, Typography, Grid } from '@material-ui/core';
-import clsx from 'clsx';
 
 const useStyles = makeStyles(() => ({
   itemRecommendcontainer: {
+    background: 'white',
     display: 'flex',
     alignItems: 'center',
     width: '100%',
@@ -15,8 +15,7 @@ const useStyles = makeStyles(() => ({
   },
 
   contentContainer: {
-    paddingLeft: 20,
-    width: '100%',
+    paddingLeft: 10,
   },
 
   productImage: {
@@ -27,13 +26,13 @@ const useStyles = makeStyles(() => ({
 
   productName: {
     color: '#686868',
-    fontWeight: 400,
-    fontSize: 14,
+    fontWeight: 600,
+    fontSize: 13,
     fontFamily: 'Lato',
     '&:hover': {
       color: '#f4a51c',
       cursor: 'pointer',
-    }
+    },
   },
 
   oldPrice: {
@@ -41,6 +40,7 @@ const useStyles = makeStyles(() => ({
     textDecoration: 'line-through',
     fontSize: 14,
     fontFamily: 'Lato',
+    marginRight: 30,
   },
 
   newPrice: {
@@ -50,33 +50,28 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function ItemProductRecommend({ item, myClass }) {
+function ItemProductRecommend({ item, myClass, containerWidth }) {
   const classes = useStyles();
-  const [containerWidth, setContainerWidth] = React.useState(0);
 
-  React.useEffect(() => {
-    const container = document.querySelector(`.${myClass}`);
-    setContainerWidth(container.offsetWidth);
-  },[myClass])
   return (
-    <div className={clsx(classes.itemRecommendcontainer, myClass)}>
+    <div className={classes.itemRecommendcontainer} >
       <div className={classes.imageContainer}>
         <Avatar variant='square' src={item.image} className={classes.productImage} />
       </div>
       <div className={classes.contentContainer}>
         <Typography className={classes.productName}>
-          {(containerWidth < 200) ? `${item.name.slice(0, 11)}...` : item.name}
+          {(containerWidth < 200) ? `${item.name.slice(0, 10)}...` : item.name}
         </Typography>
         <Grid container alignItems="center" justifyContent="flex-start">
           {
             item.oldPrice && (
-              <Grid item xs={item.oldPrice ? 6 : 1}>
-                <Typography className={classes.oldPrice}>{`$ ${item.oldPrice}`}</Typography>
+              <Grid item xs={12} sm={12} md={12} lg={item.oldPrice ? 6 : 1}>
+                <Typography className={classes.oldPrice}>${item.oldPrice}</Typography>
               </Grid>
             )
           }
-          <Grid item xs={item.oldPrice ? 6 : 11}>
-            <Typography className={classes.newPrice}>{`$ ${item.newPrice}`}</Typography>
+          <Grid item xs={12} sm={12} md={12} lg={item.oldPrice ? 6 : 11}>
+            <Typography className={classes.newPrice}>${item.newPrice}</Typography>
           </Grid>
         </Grid>
       </div>

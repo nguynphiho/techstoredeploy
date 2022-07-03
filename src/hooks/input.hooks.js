@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, } from 'react';
 
 export const useInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
@@ -37,5 +37,30 @@ export const useAvatar = (initialValue) => {
     },
   };
 };
+
+export const useWindowSize = () => {
+  const [size, setSize] = useState([window.innerWidth, window.innerHeight]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", handleResize)
+  },[]);
+  return size;
+};
+
+export const useScrollWindow = () => {
+  const [screenHeight, setScreenHeight] = React.useState(0);
+
+  useEffect(() => {
+    const handleGetScreenSize = () => {
+      setScreenHeight(window.pageYOffset);
+    }
+    window.addEventListener("scroll", handleGetScreenSize)
+  }, []);
+
+  return screenHeight;
+}
 
 export default useInput;

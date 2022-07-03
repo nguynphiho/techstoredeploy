@@ -1,10 +1,8 @@
 import React from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
-    // padding: 10,
-    width: 150,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -20,8 +18,8 @@ const useStyles = makeStyles(() => ({
     overflow: 'hidden',
     border: 'solid 1px rgb(241, 241, 241)',
     '& img': {
-      width: 140,
-      height: 140,
+      width: 'inherit',
+      height: 'inherit',
       borderRadius: '50%',
       objectFit: 'contain',
       transition: 'all ease-in-out .5s',
@@ -41,7 +39,7 @@ const useStyles = makeStyles(() => ({
 
 }))
 
-function CategoryCard({data}) {
+function CategoryCard({ data }) {
   const classes = useStyles();
   return (
     <div className={classes.container}>

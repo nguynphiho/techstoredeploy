@@ -17,6 +17,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 20,
     background: 'white',
     display: 'flex',
+    flexWrap: 'wrap',
+    rowGap: 10,
     padding: '20px 10px',
     justifyContent: 'space-between',
     boxShadow: '0px 0px 15px rgba(15, 23, 42, 0.08)',

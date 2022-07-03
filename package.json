@@ -1,7 +1,7 @@
 {
   "name": "techstore",
   "version": "0.1.0",
-  "homepage": "https://nguynphiho.github.io/techstore",
+  "homepage": "https://nguynphiho.github.io/techstoredeployn",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.4",
