@@ -9,6 +9,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleCart } from 'redux/cart/actions';
+import { toggleMenu } from 'redux/sidebarMenu/action';
+import { isOpenSelector } from 'redux/cart/selector';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     left: 0,
     background: 'white',
-    boxShadow: '0px 10px 15px -3px rgba(15, 23, 42, 0.5)',
+    boxShadow: '0px 10px 15px -3px rgba(15, 23, 42, 0.2)',
     zIndex: 9999,
     transform: 'translateY(-100px)',
     transition: 'all ease-in-out .5s',
@@ -31,6 +35,12 @@ const useStyles = makeStyles((theme) => ({
     transform: 'translateY(0px)',
   },
 
+  iconMenu: {
+    borderRadius: 0,
+    display: 'flex',
+    alignItems: 'center',
+  },
+
   badge: {
     // color: 'white',
     // background: 'black',
@@ -38,6 +48,14 @@ const useStyles = makeStyles((theme) => ({
 
   iconButton: {
     padding: 8,
+  },
+
+  menuText: {
+    paddingLeft: 10,
+    fontFamily: 'Lato',
+    fontSize: 18,
+    fontWeight: 600,
+    color: '#686868',
   },
 
 }))
@@ -136,17 +154,37 @@ const menuData = [
 ];
 
 function FixedMenu({ location }) {
-  const screenHeight = useScrollWindow();
+  const isMenuOpen = useSelector((state) => state.sideBarMenuReducer);
+  const isCartOpen = useSelector(isOpenSelector);
 
-  console.log(screenHeight)
+  const combineValue = (!isMenuOpen && !isCartOpen);
+  // const [isActive, setActive] = React.useState(false);
+
+  console.log('menu open:' +isMenuOpen);
+  console.log('cart open:' +isCartOpen);
+  console.log('combine value:' + combineValue);
+
+  console.log(isCartOpen)
+
+  const dispatch = useDispatch();
+  const screenHeight = useScrollWindow();
   const classes = useStyles({ screenHeight });
+
+  const handleOpenCart = () => {
+    dispatch(toggleCart(true));
+  };
+
+  const handleOpenMenu = () => {
+    dispatch(toggleMenu(true));
+  };
   return (
     <div className={clsx(classes.container, {
-      [classes.active]: screenHeight > 300,
+      [classes.active]: (screenHeight > 300 && combineValue),
     })}>
       <div className={classes.logoIcon}>
-        <IconButton className={classes.iconMenu}>
+        <IconButton className={classes.iconMenu} onClick={handleOpenMenu}>
           <Avatar variant='square' src={storeIcon}></Avatar>
+          <Typography className={classes.menuText}>Menu</Typography>
         </IconButton>
       </div>
       <MenuComponent data={menuData} location={location} />
@@ -160,12 +198,13 @@ function FixedMenu({ location }) {
         <IconButton className={classes.iconButton}>
           <AccountCircleIcon />
         </IconButton>
-        <IconButton 
+        <IconButton
+          onClick={handleOpenCart}
           style={{ color: 'black', margin: '0px 10px 0px 20px' }}
           className={classes.iconButton}
         >
-          <Badge badgeContent={6} color="primary" >
-            <LocalMallIcon style={{ color: 'black' }}/>
+          <Badge badgeContent={6} color="primary" overlap="rectangular" >
+            <LocalMallIcon style={{ color: 'black' }} />
           </Badge>
         </IconButton>
       </div>

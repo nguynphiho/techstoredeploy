@@ -2,6 +2,8 @@ import { Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
 import MenuIcon from '@material-ui/icons/Menu';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { toggleMenu } from 'redux/sidebarMenu/action';
 
 import MenuComponent from 'components/MenuComponent';
 
@@ -35,6 +37,15 @@ const useStyles = makeStyles((theme) => ({
   iconMenu: {
     [theme.breakpoints.up("md")]: {
       display: 'none',
+    },
+    borderRadius: 4,
+    backgroundColor: '#f4a51c',
+    color: 'white',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    '&:hover': {
+      backgroundColor: '#ffb93f',
     },
   },
 
@@ -135,6 +146,11 @@ const menuData = [
 
 function Menu({ location }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const openSideBarMenu = (value) => {
+    dispatch(toggleMenu(value));
+  };
 
   return (
     <div className={classes.contianer}>
@@ -147,8 +163,17 @@ function Menu({ location }) {
           lg={10}
         >
           <MenuComponent data={menuData} location={location}/>
-          <IconButton className={classes.iconMenu}>
+          <IconButton className={classes.iconMenu} onClick={() => openSideBarMenu(true)} >
             <MenuIcon />
+            <Typography
+              style={{
+                fontSize: 16,
+                fontFamily: 'Lato',
+                fontWeight: 600,
+              }}
+            >
+              Menu & Category
+            </Typography>
           </IconButton>
         </Grid>
         <Grid

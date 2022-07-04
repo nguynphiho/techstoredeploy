@@ -3,6 +3,9 @@ import {
   Avatar, Badge, Grid, IconButton,
   InputAdornment, makeStyles, TextField, Typography,
 } from '@material-ui/core';
+
+import { useDispatch } from 'react-redux';
+import { toggleCart } from 'redux/cart/actions'
 import FacebookIcon from '@material-ui/icons/Facebook';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import InstagramIcon from '@material-ui/icons/Instagram';
@@ -174,11 +177,12 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Header({ openCart }) {
+function Header() {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   const clickOpen = (value) => {
-    openCart(value);
+    dispatch(toggleCart(value))
   };
 
   return (

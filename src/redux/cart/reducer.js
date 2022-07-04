@@ -1,11 +1,17 @@
-import { ADD_PRODUCT, CLEAR_CART, DELETE_PRODUCT, UPDATE_PRODUCT } from "./constants";
+import { ADD_PRODUCT, CLEAR_CART, DELETE_PRODUCT, TOGGLE_CART, UPDATE_PRODUCT } from "./constants";
 
 const initState = {
   productCart: [],
+  isOpen: false,
 };
 
 const cartReducer = (state = initState, { type, payload }) => {
   switch (type) {
+    case TOGGLE_CART:
+      return {
+        ...state,
+        isOpen: payload,
+      };
     case ADD_PRODUCT:
       return {
         ...state,

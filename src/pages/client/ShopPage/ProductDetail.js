@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 function ProductDetail() {
   const classes = useStyles();
   const location = useLocation();
-  console.log(location);
+
   return (
     <div className={classes.container}>
       <div className={classes.pageItem}>

@@ -1,0 +1,1 @@
+export const toggleMenu = (value) => ({ type: 'TOGGLE_MENU', payload: value });

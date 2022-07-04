@@ -179,7 +179,6 @@ function ProductCardDetail({ data }) {
   const classes = useStyles();
   const [thumbsSwiper, setThumbsSwiper] = React.useState(null);
   const [indexActive, setIndexActive] = React.useState(0);
-  console.log(classes)
   const handleOnSlideChange = (swiper) => {
     setIndexActive(swiper.activeIndex);
   };

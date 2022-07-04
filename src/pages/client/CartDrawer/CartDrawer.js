@@ -3,10 +3,11 @@ import { Drawer, IconButton, makeStyles, Typography, Button, Badge } from '@mate
 import ShopIcon from '@material-ui/icons/Shop';
 import CloseIcon from '@material-ui/icons/Close';
 import CartItem from 'components/CartItem';
-import { useSelector } from 'react-redux';
-import { productCarts } from 'redux/cart/selector';
+import { useDispatch, useSelector } from 'react-redux';
+import { isOpenSelector, productCarts } from 'redux/cart/selector';
 import ToCurrency from 'Utils/FormatNumber';
 import { useWindowSize } from 'hooks/input.hooks';
+import { toggleCart } from 'redux/cart/actions';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -181,12 +182,14 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function CartDrawer({ openDrawer, closeCart }) {
+function CartDrawer() {
+  const isCartOpen = useSelector(isOpenSelector);
+  const dispatch = useDispatch();
+
   const [width] = useWindowSize();
   const classes = useStyles({width});
-  const [isOpen, setOpen] = React.useState(false);
+  const [isOpen, setOpen] = React.useState(isCartOpen);
 
-  // const dispatch = useDispatch();
 
   const cart = useSelector(productCarts);
 
@@ -196,16 +199,12 @@ function CartDrawer({ openDrawer, closeCart }) {
 
   const handleToggleDrawer = (value) => {
     setOpen(value);
-    !value && closeCart(value);
+    !value && dispatch(toggleCart(false));
   };
 
-  const value = openDrawer();
-
   React.useEffect(() => {
-    setOpen(value)
-  }, [value])
-
-
+    setOpen(isCartOpen);
+  }, [isCartOpen])
 
   return (
     <>
