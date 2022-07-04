@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/techstoredeploy/static/css/main.86bcda6a.css",
-    "main.js": "/techstoredeploy/static/js/main.05501d10.js",
+    "main.js": "/techstoredeploy/static/js/main.393c3fd3.js",
     "static/js/787.da5b09fd.chunk.js": "/techstoredeploy/static/js/787.da5b09fd.chunk.js",
     "static/media/product3.png": "/techstoredeploy/static/media/product3.59a74267524b3e6435ba.png",
     "static/media/product27.png": "/techstoredeploy/static/media/product27.cfa240c64ad2e385767b.png",
@@ -39,11 +39,11 @@
     "static/media/banner-ad-sidebar-new.png": "/techstoredeploy/static/media/banner-ad-sidebar-new.dd1e2e194c7dbc0adc3f.png",
     "index.html": "/techstoredeploy/index.html",
     "main.86bcda6a.css.map": "/techstoredeploy/static/css/main.86bcda6a.css.map",
-    "main.05501d10.js.map": "/techstoredeploy/static/js/main.05501d10.js.map",
+    "main.393c3fd3.js.map": "/techstoredeploy/static/js/main.393c3fd3.js.map",
     "787.da5b09fd.chunk.js.map": "/techstoredeploy/static/js/787.da5b09fd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.86bcda6a.css",
-    "static/js/main.05501d10.js"
+    "static/js/main.393c3fd3.js"
   ]
 }
