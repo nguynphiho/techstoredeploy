@@ -10,7 +10,7 @@ import { useInput } from 'hooks/input.hooks';
 
 import BreadcrumbCustom from './BreadcrumbCustom';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
 
   },
@@ -49,7 +49,10 @@ const useStyles = makeStyles(() => ({
 
   fieldSelect: {
     height: 40,
-    width: 200,
+    width: '200px',
+    [theme.breakpoints.down("sm")]: {
+      width: 180,
+    },
     background: 'white',
     color: '#686868',
     fontFamily: 'Lato',
@@ -66,7 +69,10 @@ const useStyles = makeStyles(() => ({
   },
 
   buttonContainer: {
+    display: 'flex',
     marginTop: 10,
+    rowGap: 10,
+    justifyContent: 'space-between'
   },
 
 }));

@@ -188,7 +188,7 @@ function ProductCardDetail({ data }) {
       {
         (data.status.length > 0) && (
           <div className={classes.status}>
-            <span>{data.status}</span>
+            <span>{data.status[0]}</span>
           </div>
         )
       }

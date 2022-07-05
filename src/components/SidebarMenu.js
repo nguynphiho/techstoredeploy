@@ -167,7 +167,7 @@ function SidebarMenu({ menuData, categoryData, location }) {
   };
 
   const handleClickCategories = () => {
-    setOpenMainCategories(!openMainCategories)
+    setOpenMainCategories(!openMainCategories);
   };
 
   const handleClickMenuItem = (item) => {
@@ -193,7 +193,6 @@ function SidebarMenu({ menuData, categoryData, location }) {
     setOpenSideMenu(value);
     !value && dispatch(toggleMenu(value))
   };
-
 
   React.useEffect(() => {
     setOpenSideMenu(isMenuOpen);

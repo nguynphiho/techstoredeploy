@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import HomePage from './pages/client/HomePage/index';
 import BlogPage from './pages/client/BlogPage/index';
 import ShopPage from './pages/client/ShopPage/index';
+import React from 'react';
 import './App.css';
 
 import MainClientPage from './pages/client';
@@ -29,4 +30,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);

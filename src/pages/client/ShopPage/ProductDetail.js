@@ -34,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
 function ProductDetail() {
   const classes = useStyles();
   const location = useLocation();
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  },[location])
 
   return (
     <div className={classes.container}>

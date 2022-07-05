@@ -27,7 +27,11 @@ function TwoRowProducts({ data, nextButtonRef, prevButtonRef }) {
       <Swiper
             slidesPerView={2}
             breakpoints={{
-              400: {
+              0: {
+                slidesPerView: 1,
+              },
+
+              370: {
                 slidesPerView: 2,
               },
               640: {

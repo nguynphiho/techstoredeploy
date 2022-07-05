@@ -5,17 +5,17 @@ import 'swiper/css/navigation';
 import { Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import MotorolaPhone from 'assets/images/product22.png';
+import FastImageCanonCamera from 'assets/images/product4.png';
+import AppleTVBox from 'assets/images/product7.png';
+import AppleMacbookPro from 'assets/images/product8.png';
+import Speaker from 'assets/images/products11.png';
+import ItemProductRecommend from 'components/ItemProductRecommend';
+import { useWindowSize } from 'hooks/input.hooks';
 import React from 'react';
 import { Grid as Grids, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import product5 from 'assets/images/product23.png';
-import product4 from 'assets/images/product24.png';
-import product3 from 'assets/images/product25.png';
-import product2 from 'assets/images/product26.png';
-import product1 from 'assets/images/product27.png';
-import ItemProductRecommend from 'components/ItemProductRecommend';
-import { useWindowSize } from 'hooks/input.hooks';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -67,84 +67,94 @@ const useStyles = makeStyles((theme) => ({
 
 const popularData = [
   {
-    id: 1,
-    name: 'Suspendisse gravida lacus varius',
-    link: '/',
-    image: product1,
-    oldPrice: 12.01,
-    newPrice: 9.99,
+    id: 13,
+    name: "Fast Image Canon Camera",
+    oldPrice: 412.02,
+    newPrice: 399.99,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: FastImageCanonCamera,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["black"],
+    amount: 10,
+    rating: 5,
+    category: ["Camera", "New Arrival",],
+    status: ["Featured"],
+    tags: ["laptop"],
   },
   {
-    id: 2,
-    name: 'Aliquam erat volutpat',
-    link: '/',
-    image: product2,
-    oldPrice: null,
-    newPrice: 200.99,
+    id: 14,
+    name: "Apple TV Box",
+    oldPrice: 412.02,
+    newPrice: 399.99,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: AppleTVBox,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["black"],
+    amount: 10,
+    rating: 5,
+    category: ["Apple", "New Arrival",],
+    status: ["Featured"],
+    tags: ["Apple"],
   },
   {
-    id: 3,
-    name: 'In fringilla felis non nulla porta rutrum',
-    link: '/',
-    image: product3,
-    oldPrice: 12.01,
-    newPrice: 9.99,
+    id: 15,
+    name: "Apple Macbook Pro 2020",
+    oldPrice: 412.02,
+    newPrice: 399.99,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: AppleMacbookPro,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["black"],
+    amount: 10,
+    rating: 5,
+    category: ["Apple", "New Arrival",],
+    status: ["On sale"],
+    tags: ["Apple"],
   },
   {
-    id: 4,
-    name: 'Suspendisse volutpat massa',
-    link: '/',
-    image: product4,
-    oldPrice: 12.01,
-    newPrice: 9.99,
+    id: 17,
+    name: "Motorola Flip Phone 2022",
+    oldPrice: 412.02,
+    newPrice: 399.99,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: MotorolaPhone,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["black"],
+    amount: 10,
+    rating: 5,
+    category: ["SmartPhone", "New Arrival",],
+    status: ["On sale"],
+    tags: ["SmartPhone"],
   },
   {
-    id: 5,
-    name: 'Microsoft Surface Laptop 3',
-    link: '/',
-    image: product5,
-    oldPrice: null,
-    newPrice: 500.99,
-  },
-  {
-    id: 6,
-    name: 'Suspendisse gravida lacus varius',
-    link: '/',
-    image: product1,
-    oldPrice: 12.01,
-    newPrice: 9.99,
-  },
-  {
-    id: 7,
-    name: 'Aliquam erat volutpat',
-    link: '/',
-    image: product2,
-    oldPrice: null,
-    newPrice: 200.99,
-  },
-  {
-    id: 8,
-    name: 'In fringilla felis non nulla porta rutrum',
-    link: '/',
-    image: product3,
-    oldPrice: 12.01,
-    newPrice: 9.99,
-  },
-  {
-    id: 9,
-    name: 'Suspendisse volutpat massa',
-    link: '/',
-    image: product4,
-    oldPrice: 12.01,
-    newPrice: 9.99,
-  },
-  {
-    id: 10,
-    name: 'Microsoft Surface Laptop 3',
-    link: '/',
-    image: product5,
-    oldPrice: null,
-    newPrice: 500.99,
+    id: 18,
+    name: "Best performance Speaker 2022",
+    oldPrice: 412.02,
+    newPrice: 399.99,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: Speaker,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["black"],
+    amount: 10,
+    rating: 5,
+    category: ["Audio", "New Arrival",],
+    status: ["On sale"],
+    tags: ["Audio"],
   },
 ];
 

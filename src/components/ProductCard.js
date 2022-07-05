@@ -1,16 +1,16 @@
-import React from 'react';
-import { Button, makeStyles, Typography, IconButton, Snackbar } from '@material-ui/core';
-import Rating from '@material-ui/lab/Rating';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import clsx from 'clsx';
-import SearchIcon from '@material-ui/icons/Search';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import CompareIcon from '@material-ui/icons/Compare';
+import { Button, IconButton, makeStyles, Typography } from '@material-ui/core';
 import Tooltip from '@material-ui/core/Tooltip';
+import CompareIcon from '@material-ui/icons/Compare';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import SearchIcon from '@material-ui/icons/Search';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Rating from '@material-ui/lab/Rating';
+import clsx from 'clsx';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Alert } from '@material-ui/lab';
-import { useSelector, useDispatch } from 'react-redux';
-import { addProductCart } from 'redux/cart/actions';
+import { addProductCart, notifyCart } from 'redux/cart/actions';
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -124,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
   productName: {
     display: (props) => ((props.horizontal) ? 'none' : 'block'),
     textAlign: 'center',
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: 'Lato',
     fontWeight: 600,
     marginBottom: 10,
@@ -246,11 +246,8 @@ const useStyles = makeStyles((theme) => ({
 
 function ProductCard({ data, horizontal }) {
   const classes = useStyles({ horizontal });
-
   const [isHover, setHover] = React.useState(false);
-  const [openSnackbar, setOpenSnackbar] = React.useState(false)
   const [added, setAdded] = React.useState(false);
-
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -261,145 +258,128 @@ function ProductCard({ data, horizontal }) {
       quantity: 1,
       totalPrice: data.newPrice,
     };
-    dispatch(addProductCart(cartItem))
-    setOpenSnackbar(true)
-    setAdded(true)
+    dispatch(addProductCart(cartItem));
+    dispatch(notifyCart(true));
+    setAdded(true);
   };
 
-  const handleCloseSnackbar = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenSnackbar(false);
+  const handleNavigate = (data) => {
+    history.push(
+      {
+        pathname: `/shop-page/products/${data.id}`,
+        state: {
+          data,
+        },
+      }
+    );
   };
 
   return (
-    <>
-      <div
-        className={classes.container}
-        onMouseOver={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        onClick={() => history.push(
-          {
-            pathname: `/shop-page/products/${data.id}`,
-            state: {
-              data,
-            },
-          }
-        )}
-      >
-        {
-          data.status.length > 0 && (
-            <div className={classes.status}>
-              <span>{data.status}</span>
-            </div>
-          )
-        }
-        <div className={classes.image}>
-          <div className={classes.imageContainer}>
-            <img src={data.mainImage} alt="" className={classes.img} />
-            <div className={clsx(classes.rating, {
-              [classes.fadeIn]: isHover,
-            })}>
-              <Rating name="read-only" value={data.rating} readOnly />
-            </div>
-            <div className={clsx(classes.navButton, {
-              [classes.fadeIn]: isHover,
-            })}
-            >
-              <Tooltip title="QuickView" placement="top">
-                <IconButton>
-                  <SearchIcon className={classes.iconButton} />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Wishlist" placement="top">
-                <IconButton>
-                  <FavoriteBorderIcon className={classes.iconButton} />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Compare" placement="top">
-                <IconButton>
-                  <CompareIcon className={classes.iconButton} />
-                </IconButton>
-              </Tooltip>
-            </div>
+    <div
+      className={classes.container}
+      onMouseOver={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onClick={() => handleNavigate(data)}
+    >
+      {
+        data.status.length > 0 && (
+          <div className={classes.status}>
+            <span>{data.status}</span>
+          </div>
+        )
+      }
+      <div className={classes.image}>
+        <div className={classes.imageContainer}>
+          <img src={data.mainImage} alt="" className={classes.img} />
+          <div className={clsx(classes.rating, {
+            [classes.fadeIn]: isHover,
+          })}>
+            <Rating name="read-only" value={data.rating} readOnly />
+          </div>
+          <div className={clsx(classes.navButton, {
+            [classes.fadeIn]: isHover,
+          })}
+          >
+            <Tooltip title="QuickView" placement="top">
+              <IconButton>
+                <SearchIcon className={classes.iconButton} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Wishlist" placement="top">
+              <IconButton>
+                <FavoriteBorderIcon className={classes.iconButton} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Compare" placement="top">
+              <IconButton>
+                <CompareIcon className={classes.iconButton} />
+              </IconButton>
+            </Tooltip>
           </div>
         </div>
+      </div>
 
-        <div className={classes.horizontalContentCard}>
-          <Typography className={classes.horizontalTitle}>{data.name}</Typography>
-          <div className={classes.horizontalPriceContainer}>
-            <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
-            <Typography>  &nbsp; -   &nbsp; </Typography>
-            <Typography className={classes.newPrice}>{`$ ${data.newPrice}`}</Typography>
-          </div>
-          <div>
-            <Typography className={classes.description}>
-              {data.description}
-            </Typography>
-          </div>
-          {
-            !added ? (
-              <div>
-                <Button className={classes.addCartButton} onClick={handleAddToCart}>
-                  <ShoppingCartIcon />
-                  Add to cart
-                </Button>
-              </div>
-            ) : (
-              <div>
-                <Button className={classes.addCartButton}>
-                  <ShoppingCartIcon />
-                  View Cart
-                </Button>
-              </div>
-            )
-          }
-
-        </div>
-
-        <div>
-          <Typography className={classes.productName}>
-            {(data.name.length > 20) ? data.name.slice(0, 18) + "..." : data.name}
-          </Typography>
-        </div>
-        <div className={classes.priceContainer}>
+      <div className={classes.horizontalContentCard}>
+        <Typography className={classes.horizontalTitle}>{data.name}</Typography>
+        <div className={classes.horizontalPriceContainer}>
           <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
           <Typography>  &nbsp; -   &nbsp; </Typography>
           <Typography className={classes.newPrice}>{`$ ${data.newPrice}`}</Typography>
         </div>
-        <div className={clsx(classes.addToCart, {
-          [classes.cartIn]: isHover,
-          [classes.cartOut]: !isHover,
-        })}>
-          {
-            !added ? (
+        <div>
+          <Typography className={classes.description}>
+            {data.description}
+          </Typography>
+        </div>
+        {
+          !added ? (
+            <div>
               <Button className={classes.addCartButton} onClick={handleAddToCart}>
                 <ShoppingCartIcon />
                 Add to cart
               </Button>
-            ) : (
+            </div>
+          ) : (
+            <div>
               <Button className={classes.addCartButton}>
                 <ShoppingCartIcon />
-                ViewCart
+                View Cart
               </Button>
-            )
-          }
-        </div>
+            </div>
+          )
+        }
+
       </div>
 
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={openSnackbar}
-        autoHideDuration={1000}
-        onClose={handleCloseSnackbar}
-      >
-        <Alert severity="success">Added product to cart successfully!</Alert>
-      </Snackbar>
-    </>
+      <div>
+        <Typography className={classes.productName}>
+          {(data.name.length > 20) ? data.name.slice(0, 18) + "..." : data.name}
+        </Typography>
+      </div>
+      <div className={classes.priceContainer}>
+        <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
+        <Typography>  &nbsp; -   &nbsp; </Typography>
+        <Typography className={classes.newPrice}>{`$ ${data.newPrice}`}</Typography>
+      </div>
+      <div className={clsx(classes.addToCart, {
+        [classes.cartIn]: isHover,
+        [classes.cartOut]: !isHover,
+      })}>
+        {
+          !added ? (
+            <Button className={classes.addCartButton} onClick={handleAddToCart}>
+              <ShoppingCartIcon />
+              Add to cart
+            </Button>
+          ) : (
+            <Button className={classes.addCartButton}>
+              <ShoppingCartIcon />
+              ViewCart
+            </Button>
+          )
+        }
+      </div>
+    </div>
   )
 }
 

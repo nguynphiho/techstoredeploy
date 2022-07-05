@@ -102,7 +102,11 @@ function OneRowProduct({ data, title }) {
             }}
             slidesPerView={4}
             breakpoints={{
-              300: {
+              0: {
+                slidesPerView: 1,
+              },
+
+              370: {
                 slidesPerView: 2,
               },
 

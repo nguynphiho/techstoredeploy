@@ -4,7 +4,7 @@ import {
   InputAdornment, makeStyles, TextField, Typography,
 } from '@material-ui/core';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleCart } from 'redux/cart/actions'
 import FacebookIcon from '@material-ui/icons/Facebook';
 import PinterestIcon from '@material-ui/icons/Pinterest';
@@ -15,8 +15,11 @@ import LanguageIcon from '@material-ui/icons/Language';
 import storeIcon from 'assets/icons/storeIcon.png'
 import SearchIcon from '@material-ui/icons/Search';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
+import { productCarts } from 'redux/cart/selector';
+import ToCurrency from 'Utils/FormatNumber';
+
 
 
 
@@ -174,12 +177,20 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
     },
   },
-
+  customBadge: {
+    color: 'white',
+    background: 'black',
+  },
 }));
 
 function Header() {
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  const productCart = useSelector(productCarts);
+  const totalPrice = productCart.reduce((result, item) => {
+    return result + item.totalPrice
+  }, 0);
 
   const clickOpen = (value) => {
     dispatch(toggleCart(value))
@@ -287,7 +298,7 @@ function Header() {
               My Account
             </Typography>
             <IconButton className={classes.iconButton}>
-              <AssignmentIndIcon />
+              <AccountCircleIcon />
             </IconButton>
           </Grid>
           <Grid
@@ -296,13 +307,22 @@ function Header() {
             className={classes.optionItem}
             onClick={() => clickOpen(true)}
           >
-            <Badge badgeContent={4} color="error" overlap="rectangular" className={classes.cartButton}>
+            <Badge
+              badgeContent={productCart.length}
+              overlap="rectangular"
+              className={classes.cartButton}
+              classes={{ badge: classes.customBadge }}
+            >
               <LocalMallIcon />
-              <Typography
-                className={classes.totalPrice}
-              >
-                $50.000
-              </Typography>
+              {
+                totalPrice > 0 && (
+                  <Typography
+                    className={classes.totalPrice}
+                  >
+                    ${ToCurrency(totalPrice)}
+                  </Typography>
+                )
+              }
             </Badge>
           </Grid>
         </Grid>

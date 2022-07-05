@@ -1,6 +1,5 @@
 import React from 'react';
 import { Avatar, IconButton, makeStyles, Typography } from '@material-ui/core';
-import { useScrollWindow } from 'hooks/input.hooks';
 import clsx from 'clsx';
 import Badge from '@material-ui/core/Badge';
 import MenuComponent from 'components/MenuComponent';
@@ -12,7 +11,7 @@ import LocalMallIcon from '@material-ui/icons/LocalMall';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCart } from 'redux/cart/actions';
 import { toggleMenu } from 'redux/sidebarMenu/action';
-import { isOpenSelector } from 'redux/cart/selector';
+import { isOpenSelector, productCarts } from 'redux/cart/selector';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,11 +40,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 
-  badge: {
-    // color: 'white',
-    // background: 'black',
-  },
-
   iconButton: {
     padding: 8,
   },
@@ -56,6 +50,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 18,
     fontWeight: 600,
     color: '#686868',
+  },
+
+  customBadge: {
+    color: 'white',
+    backgroundColor: '#686868',
+    marginLeft: 100,
   },
 
 }))
@@ -153,22 +153,17 @@ const menuData = [
   },
 ];
 
-function FixedMenu({ location }) {
+function FixedMenu({ location, screenHeight }) {
+  const classes = useStyles({ screenHeight });
+
   const isMenuOpen = useSelector((state) => state.sideBarMenuReducer);
   const isCartOpen = useSelector(isOpenSelector);
+  const productCart = useSelector(productCarts)
 
   const combineValue = (!isMenuOpen && !isCartOpen);
-  // const [isActive, setActive] = React.useState(false);
-
-  console.log('menu open:' +isMenuOpen);
-  console.log('cart open:' +isCartOpen);
-  console.log('combine value:' + combineValue);
-
-  console.log(isCartOpen)
 
   const dispatch = useDispatch();
-  const screenHeight = useScrollWindow();
-  const classes = useStyles({ screenHeight });
+  
 
   const handleOpenCart = () => {
     dispatch(toggleCart(true));
@@ -203,7 +198,11 @@ function FixedMenu({ location }) {
           style={{ color: 'black', margin: '0px 10px 0px 20px' }}
           className={classes.iconButton}
         >
-          <Badge badgeContent={6} color="primary" overlap="rectangular" >
+          <Badge 
+            badgeContent={productCart.length}
+            overlap="rectangular"
+            classes={{ badge: classes.customBadge }}
+          >
             <LocalMallIcon style={{ color: 'black' }} />
           </Badge>
         </IconButton>
@@ -212,4 +211,4 @@ function FixedMenu({ location }) {
   )
 }
 
-export default FixedMenu;
+export default React.memo(FixedMenu);

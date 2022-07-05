@@ -1,5 +1,6 @@
 import { Avatar, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   itemRecommendcontainer: {
@@ -50,13 +51,23 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function ItemProductRecommend({ item, myClass, containerWidth }) {
+function ItemProductRecommend({ item, containerWidth }) {
+  const history = useHistory();
   const classes = useStyles();
 
+  const handleNavigate = () => {
+    history.push({
+      pathname: `/shop-page/products/${item.id}`,
+      state: {
+        data: item,
+      },
+    })
+  };
+
   return (
-    <div className={classes.itemRecommendcontainer} >
+    <div className={classes.itemRecommendcontainer} onClick={handleNavigate}>
       <div className={classes.imageContainer}>
-        <Avatar variant='square' src={item.image} className={classes.productImage} />
+        <Avatar variant='square' src={item.mainImage} className={classes.productImage} />
       </div>
       <div className={classes.contentContainer}>
         <Typography className={classes.productName}>

@@ -1,14 +1,8 @@
 import { Avatar, Grid, makeStyles, Typography } from '@material-ui/core';
-import React from 'react';
-
 import storeIcon from 'assets/icons/storeIcon.png';
-import product5 from 'assets/images/product23.png';
-import product4 from 'assets/images/product24.png';
-import product3 from 'assets/images/product25.png';
-import product2 from 'assets/images/product26.png';
-import product1 from 'assets/images/product27.png';
 import ItemProductRecomend from 'components/ItemProductRecommend';
 import MenuComponent from 'components/MenuComponent';
+import React from 'react';
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -66,50 +60,8 @@ const footerMenuData = [
   },
 ];
 
-const popularData = [
-  {
-    id: 1,
-    name: 'Suspendisse gravida lacus varius',
-    link: '/',
-    image: product1,
-    oldPrice: 12.01,
-    newPrice: 9.99,
-  },
-  {
-    id: 2,
-    name: 'Aliquam erat volutpat',
-    link: '/',
-    image: product2,
-    oldPrice: null,
-    newPrice: 200.99,
-  },
-  {
-    id: 3,
-    name: 'In fringilla felis non nulla porta rutrum',
-    link: '/',
-    image: product3,
-    oldPrice: 12.01,
-    newPrice: 9.99,
-  },
-  {
-    id: 4,
-    name: 'Suspendisse volutpat massa',
-    link: '/',
-    image: product4,
-    oldPrice: 12.01,
-    newPrice: 9.99,
-  },
-  {
-    id: 5,
-    name: 'Microsoft Surface Laptop 3',
-    link: '/',
-    image: product5,
-    oldPrice: null,
-    newPrice: 500.99,
-  },
-];
 
-function Footer({ location }) {
+function Footer({ location, popularData }) {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -189,7 +141,7 @@ function Footer({ location }) {
                 <Typography className={classes.subTitle}> Products</Typography>
                 {
                   popularData.map(item => (
-                    <ItemProductRecomend item={item} myClass="products" key={item.id}/>
+                    <ItemProductRecomend item={item} key={item.id}/>
                   ))
                 }
               </div>

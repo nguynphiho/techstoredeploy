@@ -8,6 +8,7 @@ import { isOpenSelector, productCarts } from 'redux/cart/selector';
 import ToCurrency from 'Utils/FormatNumber';
 import { useWindowSize } from 'hooks/input.hooks';
 import { toggleCart } from 'redux/cart/actions';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -26,10 +27,15 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 999,
     right: 20,
     bottom: 20,
-    width: 70,
-    height: 70,
+    width: 50,
+    height: 50,
     background: 'white',
     borderRadius: 10,
+    transition: 'all ease-in-out .6s',
+  },
+
+  hideCartBtn: {
+    transform: 'translateX(300px)'
   },
 
   cartBtn: {
@@ -37,8 +43,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   icon: {
-    fontSize: 40,
+    fontSize: 32,
     color: '#f4a51c'
+  },
+
+  customBadge: {
+    background: 'black',
+    color: 'white',
   },
 
   shoppingCart: {
@@ -182,7 +193,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function CartDrawer() {
+function CartDrawer({ screenHeight }) {
+
   const isCartOpen = useSelector(isOpenSelector);
   const dispatch = useDispatch();
 
@@ -198,8 +210,7 @@ function CartDrawer() {
   },0 )
 
   const handleToggleDrawer = (value) => {
-    setOpen(value);
-    !value && dispatch(toggleCart(false));
+    dispatch(toggleCart(value));
   };
 
   React.useEffect(() => {
@@ -210,9 +221,16 @@ function CartDrawer() {
     <>
       {
         !isOpen && (
-          <div className={classes.cart}>
+          <div className={clsx(classes.cart,{
+            [classes.hideCartBtn]: screenHeight > 300, 
+          })}>
             <IconButton className={classes.cartBtn} onClick={() => handleToggleDrawer(true)}>
-              <Badge badgeContent={cart.length} color="error" overlap="rectangular">
+              <Badge 
+                badgeContent={cart.length}
+                color="error"
+                overlap="rectangular"
+                classes={{ badge: classes.customBadge }}
+              >
                 <ShopIcon className={classes.icon} />
               </Badge>
             </IconButton>

@@ -149,7 +149,7 @@ function ListComponent({ name, data, location }) {
                         }
                         )}
                       />
-                      {item.subItem.length > 0 && <ArrowForwardIosIcon style={{ color: '#686868', fontSize: 14 }} />}
+                      {item.subMenu.length > 0 && <ArrowForwardIosIcon style={{ color: '#686868', fontSize: 14 }} />}
                     </ListItem>
                     <div
                       className={clsx(classes.subMenuContainer, {
@@ -158,7 +158,7 @@ function ListComponent({ name, data, location }) {
                     >
                       {
                         openSub &&
-                        item.subItem.map(sub => (
+                        item.subMenu.map(sub => (
                           <div key={sub.id}>
                             <ListItem
                               button

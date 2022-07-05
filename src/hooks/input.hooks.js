@@ -46,18 +46,21 @@ export const useWindowSize = () => {
       setSize([window.innerWidth, window.innerHeight]);
     }
     window.addEventListener("resize", handleResize)
-  },[]);
+  }, []);
   return size;
 };
 
 export const useScrollWindow = () => {
-  const [screenHeight, setScreenHeight] = React.useState(0);
+  const [screenHeight, setScreenHeight] = React.useState({ screenHeight: 0 });
 
   useEffect(() => {
-    const handleGetScreenSize = () => {
-      setScreenHeight(window.pageYOffset);
+    const handleScroll = () => {
+      setScreenHeight({ screenHeight: window.pageYOffset });
     }
-    window.addEventListener("scroll", handleGetScreenSize)
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return screenHeight;
