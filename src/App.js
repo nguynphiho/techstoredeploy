@@ -23,10 +23,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route exact path="/techstoredeploy/login">
+          <Route exact path="/login">
             <Login />
           </Route>
-          <Route exact path="/techstoredeploy/signup">
+          <Route exact path="/signup">
             <SignUp />
           </Route>
           <MainClientPage>
@@ -34,19 +34,19 @@ function App() {
               <Route exact path="/techstoredeploy">
                 <HomePage productIdCart={productIdcart} />
               </Route>
-              <Route exact path="/techstoredeploy/home">
+              <Route exact path="/home">
                 <HomePage productIdCart={productIdcart} />
               </Route>
-              <Route exact path="/techstoredeploy/shop-page">
+              <Route exact path="/shop-page">
                 <ShopPage productIdCart={productIdcart} />
               </Route>
-              <Route exact path="/techstoredeploy/shop-page/products/:id">
+              <Route exact path="/shop-page/products/:id">
                 <ProductDetail productIdCart={productIdcart} />
               </Route>
-              <Route exact path="/techstoredeploy/blog">
+              <Route exact path="/blog">
                 <BlogPage />
               </Route>
-              <Route exact path="/techstoredeploy/blog/:id">
+              <Route exact path="/blog/:id">
                 <BlogDetail />
               </Route>
             </Switch>
