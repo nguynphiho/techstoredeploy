@@ -102,7 +102,7 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-function TrendNow() {
+function TrendNow({ productIdCart }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const navigationPrevRef = React.useRef(null)
@@ -165,14 +165,30 @@ function TrendNow() {
       </Grid>
       <Grid container>
         <TabPanel value={value} index={0}>
-          <TwoRowProducts data={productsData} nextButtonRef={navigationNextRef} prevButtonRef={navigationPrevRef} />
+          <TwoRowProducts 
+            data={productsData}
+            nextButtonRef={navigationNextRef}
+            prevButtonRef={navigationPrevRef}
+            productIdCart={productIdCart}
+          />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <TwoRowProducts data={productsData} nextButtonRef={navigationNextRef} prevButtonRef={navigationPrevRef} />
+          <TwoRowProducts 
+            data={productsData}
+            nextButtonRef={navigationNextRef}
+            prevButtonRef={navigationPrevRef}
+            productIdCart={productIdCart}
+          />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <TwoRowProducts data={productsData} nextButtonRef={navigationNextRef} prevButtonRef={navigationPrevRef} />
+          <TwoRowProducts 
+            data={productsData}
+            nextButtonRef={navigationNextRef}
+            prevButtonRef={navigationPrevRef}
+            productIdCart={productIdCart}
+          />
         </TabPanel>
+
       </Grid>
     </div>
   )

@@ -5,7 +5,7 @@ const store = createStore(RootReducer);
 
 store.subscribe(() => {
   // localStorage.setItem('todos', JSON.stringify())
-  // console.log(store.getState().cartReducer.productCart);
+  console.log(store.getState().cartReducer);
 })
 
 export default store;

@@ -14,6 +14,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import QuantityComponent from './QuantityComponent';
 import { useWindowSize } from 'hooks/input.hooks';
+import { useDispatch } from 'react-redux';
+import { addProductCart, notifyCart } from 'redux/cart/actions';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -174,13 +176,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function ProductCardDetail({ data }) {
+function ProductCardDetail({ data, productIdCart }) {
+  const dispatch = useDispatch();
   const [width] = useWindowSize();
   const classes = useStyles();
   const [thumbsSwiper, setThumbsSwiper] = React.useState(null);
   const [indexActive, setIndexActive] = React.useState(0);
   const handleOnSlideChange = (swiper) => {
     setIndexActive(swiper.activeIndex);
+  };
+
+  const handleAddToCart = () => {
+    const cartItem = {
+      ...data,
+      quantity: 1,
+      totalPrice: data.newPrice,
+    };
+    dispatch(addProductCart(cartItem));
+    dispatch(notifyCart(true));
   };
 
   return (
@@ -299,7 +312,22 @@ function ProductCardDetail({ data }) {
         </div>
         <div className={classes.buttonContainer}>
           <QuantityComponent />
-          <Button className={classes.addtocartBtn}> Add to cart </Button>
+          {
+            productIdCart.includes(data.id) ? (
+              <Button 
+                className={classes.addtocartBtn}
+              > 
+                View Cart
+              </Button>
+            ) : (
+              <Button 
+                className={classes.addtocartBtn}
+                onClick={handleAddToCart}
+              > 
+                Add to cart
+              </Button>
+            )
+          }
           <div className={classes.groupIconButton}>
             <IconButton className={classes.iconButton} >
               <FavoriteIcon />

@@ -88,8 +88,7 @@ function MenuComponent({ data, location }) {
     setHover("")
   };
 
-  const handleNavigate = (event,link) => {
-    event.stopPropagation();
+  const handleNavigate = (link) => {
     history.push(link);
   };
 
@@ -105,12 +104,13 @@ function MenuComponent({ data, location }) {
             data.map(item => {
               const open = hover === item.link;
               return (
-                <Link to={item.link} key={item.id} onMouseLeave={handleOnMouseLeave}>
+                <div key={item.id} onMouseLeave={handleOnMouseLeave}>
                   <Button
                     className={clsx(classes.buttonMenu, {
                       [classes.active]: (location.includes(item.link)),
                     })}
                     onMouseEnter={() => handleOnMouseEnter(item.link)}
+                    onClick={() => handleNavigate(item.link)}
                   >
                     {item.label}
                   </Button>
@@ -124,7 +124,7 @@ function MenuComponent({ data, location }) {
                       && item.subMenu.map(sub => (
                         <div key={sub.id}>
                           <Button
-                            onClick={(event)=>handleNavigate(event, sub.link)}
+                            onClick={(event)=>handleNavigate(sub.link)}
                             className={clsx(classes.buttonSubMenu, {
                               [classes.active]: location.includes(sub.link),
                             })}
@@ -135,7 +135,7 @@ function MenuComponent({ data, location }) {
                       ))
                     }
                   </div>
-                </Link>
+                </div>
               )
             })
           }

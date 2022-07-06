@@ -15,7 +15,6 @@ function NotificationCart({ isNotify }) {
     }
     dispatch(notifyCart(false));
   };
-  console.log(openSnackbar);
 
   React.useEffect(() => {
     setOpenSnackbar(isNotify)

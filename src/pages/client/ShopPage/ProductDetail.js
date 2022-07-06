@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function ProductDetail() {
+function ProductDetail({ productIdCart }) {
   const classes = useStyles();
   const location = useLocation();
   React.useEffect(() => {
@@ -44,7 +44,7 @@ function ProductDetail() {
   return (
     <div className={classes.container}>
       <div className={classes.pageItem}>
-        <ProductCardDetail data={location.state.data}/>
+        <ProductCardDetail data={location.state.data} productIdCart={productIdCart}/>
       </div>
       <div className={classes.pageItem}>
         <TabProductInfo />
@@ -74,7 +74,7 @@ function ProductDetail() {
       </div>
 
       <div className={classes.pageItem}>
-        <OneRowProduct data={productsData} title="Related Products" />
+        <OneRowProduct data={productsData} title="Related Products" productIdCart={productIdCart} />
       </div>
     </div>
   )

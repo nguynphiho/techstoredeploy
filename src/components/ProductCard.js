@@ -173,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       color: '#df971a',
     },
-    zIndex: 999,
+    zIndex: 9999,
   },
 
   cartIn: {
@@ -244,10 +244,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProductCard({ data, horizontal }) {
+function ProductCard({ data, horizontal, added }) {
   const classes = useStyles({ horizontal });
   const [isHover, setHover] = React.useState(false);
-  const [added, setAdded] = React.useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -260,7 +259,6 @@ function ProductCard({ data, horizontal }) {
     };
     dispatch(addProductCart(cartItem));
     dispatch(notifyCart(true));
-    setAdded(true);
   };
 
   const handleNavigate = (data) => {

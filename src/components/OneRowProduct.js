@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function OneRowProduct({ data, title }) {
+function OneRowProduct({ data, title, productIdCart }) {
   const [width] = useWindowSize();
   const classes = useStyles({ width });
   const navigationPrevRef = React.useRef(null)
@@ -128,7 +128,7 @@ function OneRowProduct({ data, title }) {
             {
               data.map(item => (
                 <SwiperSlide key={item.id}>
-                  <ProductCard data={item} />
+                  <ProductCard data={item} added={productIdCart.includes(item.id)} />
                 </SwiperSlide>
               ))
             }

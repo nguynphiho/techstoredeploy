@@ -10,21 +10,48 @@ import './App.css';
 import MainClientPage from './pages/client';
 import BlogDetail from 'pages/client/BlogPage/BlogDetail';
 import ProductDetail from 'pages/client/ShopPage/ProductDetail';
+import { productCarts } from 'redux/cart/selector';
+import { useSelector } from 'react-redux';
+import Login from 'pages/client/LoginPage';
+import SignUp from 'pages/client/RegisterPage';
+
 
 function App() {
+  const productCart = useSelector(productCarts);
+  const productIdcart = productCart.map(item => item.id);
   return (
     <div className="App">
       <BrowserRouter>
-        <MainClientPage>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/home" component={HomePage} />
-            <Route exact path="/shop-page" component={ShopPage} />
-            <Route exact path="/shop-page/products/:id" component={ProductDetail} />
-            <Route exact path="/blog" component={BlogPage} />
-            <Route exact path="/blog/:id" component={BlogDetail} />
-          </Switch>
-        </MainClientPage>
+        <Switch>
+          <Route exact path="/techstoredeploy/login">
+            <Login />
+          </Route>
+          <Route exact path="/techstoredeploy/signup">
+            <SignUp />
+          </Route>
+          <MainClientPage>
+            <Switch>
+              <Route exact path="/techstoredeploy">
+                <HomePage productIdCart={productIdcart} />
+              </Route>
+              <Route exact path="/techstoredeploy/home">
+                <HomePage productIdCart={productIdcart} />
+              </Route>
+              <Route exact path="/techstoredeploy/shop-page">
+                <ShopPage productIdCart={productIdcart} />
+              </Route>
+              <Route exact path="/techstoredeploy/shop-page/products/:id">
+                <ProductDetail productIdCart={productIdcart} />
+              </Route>
+              <Route exact path="/techstoredeploy/blog">
+                <BlogPage />
+              </Route>
+              <Route exact path="/techstoredeploy/blog/:id">
+                <BlogDetail />
+              </Route>
+            </Switch>
+          </MainClientPage>
+        </Switch>
       </BrowserRouter>
     </div>
   );

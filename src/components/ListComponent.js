@@ -99,9 +99,7 @@ function ListComponent({ name, data, location }) {
     setHover("")
   };
 
-  const handleNavigate = (event, link) => {
-    console.log(event);
-    event.stopPropagation();
+  const handleNavigate = (link) => {
     history.push(link);
   };
 
@@ -134,9 +132,10 @@ function ListComponent({ name, data, location }) {
               data.map((item) => {
                 const openSub = hover === item.link;
                 return (
-                  <Link to={item.link} className={classes.link} key={item.id} >
+                  <div className={classes.link} key={item.id} >
                     <ListItem
                       button
+                      onClick={() => handleNavigate(item.link)}
                       onMouseEnter={() => handleOnMouseEnter(item.link)}
                     >
                       <ListItemIcon>
@@ -162,7 +161,7 @@ function ListComponent({ name, data, location }) {
                           <div key={sub.id}>
                             <ListItem
                               button
-                              onClick={(event) => handleNavigate(event, sub.link)}
+                              onClick={() => handleNavigate(sub.link)}
                             >
                               <ListItemText
                                 primary={sub.label}
@@ -175,7 +174,7 @@ function ListComponent({ name, data, location }) {
                         ))
                       }
                     </div>
-                  </Link>
+                  </div>
                 )
               })
             }

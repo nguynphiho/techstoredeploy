@@ -34,7 +34,7 @@ import AppleMacbookPro from 'assets/images/product8.png';
 import Speaker from 'assets/images/products11.png';
 import NotificationCart from 'components/NotificationCart';
 
-import { isOpenSnackbar } from 'redux/cart/selector';
+import { isOpenSnackbar, productCarts } from 'redux/cart/selector';
 import { useSelector } from 'react-redux';
 
 
@@ -405,7 +405,8 @@ const tagCloudData = [
 
 function MainClientPage( props ) { 
   const location = useLocation();
-  const isNotify = useSelector(isOpenSnackbar)
+  const isNotify = useSelector(isOpenSnackbar);
+  
   const { screenHeight } = useScrollWindow();
   return (
     <div>

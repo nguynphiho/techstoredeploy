@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function HomePage() {
+function HomePage({ productIdCart }) {
   const classes = useStyles();
 
   return (
@@ -72,13 +72,13 @@ function HomePage() {
           </div>
         </Grid>
         <Grid item xs={12} className={classes.cardContainer}>
-          <TrendNow />
+          <TrendNow productIdCart={productIdCart}/>
         </Grid>
         <Grid item xs={12} className={classes.cardContainer}>
-          <ShopByCategory />
+          <ShopByCategory/>
         </Grid>
         <Grid item xs={12} className={classes.cardContainer}>
-          <OneRowProduct data={productsData} title="Hot Right Now" />
+          <OneRowProduct data={productsData} title="Hot Right Now" productIdCart={productIdCart} />
         </Grid>
         <Grid item xs={12} className={classes.cardContainer}>
           <Ads />

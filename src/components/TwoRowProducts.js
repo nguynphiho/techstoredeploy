@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TwoRowProducts({ data, nextButtonRef, prevButtonRef }) {
+function TwoRowProducts({ data, nextButtonRef, prevButtonRef, productIdCart }) {
   const [width] = useWindowSize();
   const classes = useStyles({width});
   return (
@@ -83,7 +83,7 @@ function TwoRowProducts({ data, nextButtonRef, prevButtonRef }) {
             {
               data.map(item => (
                 <SwiperSlide key={item.id}>
-                  <ProductCard data={item} />
+                  <ProductCard data={item} added={productIdCart.includes(item.id)} />
                 </SwiperSlide>
               ))
             }

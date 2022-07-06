@@ -19,6 +19,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import { productCarts } from 'redux/cart/selector';
 import ToCurrency from 'Utils/FormatNumber';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -184,6 +185,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -194,6 +196,10 @@ function Header() {
 
   const clickOpen = (value) => {
     dispatch(toggleCart(value))
+  };
+
+  const handleNavigate = (link) => {
+    history.push(link);
   };
 
   return (
@@ -294,7 +300,7 @@ function Header() {
             className={classes.optionItem}
           >
             <Typography className={classes.mainOptionName}> Sign In/Sign Up</Typography>
-            <Typography className={classes.subOptionName}>
+            <Typography className={classes.subOptionName} onClick={() => handleNavigate("/techstoredeploy/login")}>
               My Account
             </Typography>
             <IconButton className={classes.iconButton}>

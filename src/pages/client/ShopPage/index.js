@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function ShopPage() {
+function ShopPage({ productIdCart }) {
   const classes = useStyles();
   const [isHorizontal, setHorizontal] = React.useState(false);
   const amountOfProduct = productsData.length;
@@ -37,7 +37,7 @@ function ShopPage() {
               lg={isHorizontal ? 12 : 3}
               key={item.id}
             >
-              <ProductCard data={item} horizontal={isHorizontal}/>
+              <ProductCard data={item} horizontal={isHorizontal} added={productIdCart.includes(item.id)}/>
             </Grid>
           ))
         }
