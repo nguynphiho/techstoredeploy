@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/techstoredeploy/static/css/main.86bcda6a.css",
-    "main.js": "/techstoredeploy/static/js/main.31720269.js",
+    "main.css": "/techstoredeploy/static/css/main.42208225.css",
+    "main.js": "/techstoredeploy/static/js/main.aa242a0e.js",
     "static/js/787.da5b09fd.chunk.js": "/techstoredeploy/static/js/787.da5b09fd.chunk.js",
+    "static/media/background.jpg": "/techstoredeploy/static/media/background.d76cc3d18b62a77524e0.jpg",
     "static/media/product3.png": "/techstoredeploy/static/media/product3.59a74267524b3e6435ba.png",
     "static/media/product27.png": "/techstoredeploy/static/media/product27.cfa240c64ad2e385767b.png",
     "static/media/product1.png": "/techstoredeploy/static/media/product1.208d580e32faf4fe2188.png",
@@ -32,17 +33,19 @@
     "static/media/category-img-6-woo-slider.png": "/techstoredeploy/static/media/category-img-6-woo-slider.6b413519147fe33cc98d.png",
     "static/media/slider-watches-1-1.png": "/techstoredeploy/static/media/slider-watches-1-1.0873da393b4a3aa942d9.png",
     "static/media/post2-1.jpg": "/techstoredeploy/static/media/post2-1.8a44f02845e6e2ce57f6.jpg",
+    "static/media/google.png": "/techstoredeploy/static/media/google.e12914ad8afda3f6f2e8.png",
     "static/media/storeIcon.png": "/techstoredeploy/static/media/storeIcon.216fe30f7a2dcfcb4569.png",
     "static/media/ab-banner-right-464.png": "/techstoredeploy/static/media/ab-banner-right-464.373d43ef2d59e4b2cda3.png",
     "static/media/ad-banner-464.png": "/techstoredeploy/static/media/ad-banner-464.3dd55f2de8a6c2d8d3f8.png",
+    "static/media/twitter.png": "/techstoredeploy/static/media/twitter.28b4dce41e4e33858919.png",
     "static/media/banner-ad-sidebar-new.png": "/techstoredeploy/static/media/banner-ad-sidebar-new.dd1e2e194c7dbc0adc3f.png",
     "index.html": "/techstoredeploy/index.html",
-    "main.86bcda6a.css.map": "/techstoredeploy/static/css/main.86bcda6a.css.map",
-    "main.31720269.js.map": "/techstoredeploy/static/js/main.31720269.js.map",
+    "main.42208225.css.map": "/techstoredeploy/static/css/main.42208225.css.map",
+    "main.aa242a0e.js.map": "/techstoredeploy/static/js/main.aa242a0e.js.map",
     "787.da5b09fd.chunk.js.map": "/techstoredeploy/static/js/787.da5b09fd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.86bcda6a.css",
-    "static/js/main.31720269.js"
+    "static/css/main.42208225.css",
+    "static/js/main.aa242a0e.js"
   ]
 }
