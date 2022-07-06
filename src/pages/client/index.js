@@ -1,18 +1,10 @@
-import FixedMenu from 'components/FixedMenu';
-import SidebarMenu from 'components/SidebarMenu';
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import Body from './body/Body';
-import CartDrawer from './CartDrawer/CartDrawer';
-import Footer from './footer/Footer';
-import Header from './header/Header';
-import Menu from './menu/Menu';
-import { useScrollWindow } from 'hooks/input.hooks';
-
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 import BubbleChartIcon from '@material-ui/icons/BubbleChart';
 import CameraIcon from '@material-ui/icons/Camera';
+import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import DevicesOtherIcon from '@material-ui/icons/DevicesOther';
+import HomeIcon from '@material-ui/icons/Home';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import LaptopWindowsIcon from '@material-ui/icons/LaptopWindows';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
@@ -20,25 +12,28 @@ import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import SmartphoneIcon from '@material-ui/icons/Smartphone';
 import SpeakerIcon from '@material-ui/icons/Speaker';
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
-import WatchIcon from '@material-ui/icons/Watch';
-import HomeIcon from '@material-ui/icons/Home';
-import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
 import StorefrontIcon from '@material-ui/icons/Storefront';
-import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import ScrollTopButton from 'components/ScrollTopButton';
+import WatchIcon from '@material-ui/icons/Watch';
 import MotorolaPhone from 'assets/images/product22.png';
 import FastImageCanonCamera from 'assets/images/product4.png';
 import AppleTVBox from 'assets/images/product7.png';
 import AppleMacbookPro from 'assets/images/product8.png';
 import Speaker from 'assets/images/products11.png';
+import FixedMenu from 'components/FixedMenu';
 import NotificationCart from 'components/NotificationCart';
-
-import { isOpenSnackbar, productCarts } from 'redux/cart/selector';
+import ScrollTopButton from 'components/ScrollTopButton';
+import SidebarMenu from 'components/SidebarMenu';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { isOpenSnackbar } from 'redux/cart/selector';
 
-
-
+import Body from './body/Body';
+import CartDrawer from './CartDrawer/CartDrawer';
+import Footer from './footer/Footer';
+import Header from './header/Header';
+import Menu from './menu/Menu';
 
 const menuData = [
   {
@@ -403,15 +398,15 @@ const tagCloudData = [
   },
 ]
 
-function MainClientPage( props ) { 
+function MainClientPage( props ) {
   const location = useLocation();
   const isNotify = useSelector(isOpenSnackbar);
-  
-  const { screenHeight } = useScrollWindow();
+  console.log('re-render');
+
   return (
     <div>
       <Header />
-      <FixedMenu location={location.pathname} screenHeight={screenHeight} />
+      <FixedMenu location={location.pathname} />
       <Menu location={location.pathname} />
       <Body
         location={location.pathname}
@@ -422,12 +417,12 @@ function MainClientPage( props ) {
         {props.children}
       </Body>
       <Footer location={location.pathname} popularData={popularData} />
-      <CartDrawer screenHeight={screenHeight}/>
+      <CartDrawer />
       <SidebarMenu location={location.pathname} menuData={menuData} categoryData={categoryData} />
-      <ScrollTopButton screenHeight={screenHeight}/>
+      <ScrollTopButton/>
       <NotificationCart isNotify={isNotify} />
     </div>
   )
 }
 
-export default MainClientPage;
+export default React.memo(MainClientPage);

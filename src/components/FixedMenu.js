@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleCart } from 'redux/cart/actions';
 import { toggleMenu } from 'redux/sidebarMenu/action';
 import { isOpenSelector, productCarts } from 'redux/cart/selector';
+import { useScrollWindow } from 'hooks/input.hooks';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -153,15 +154,14 @@ const menuData = [
   },
 ];
 
-function FixedMenu({ location, screenHeight }) {
+function FixedMenu({ location }) {
+  const { screenHeight } = useScrollWindow();
   const classes = useStyles({ screenHeight });
 
   const isMenuOpen = useSelector((state) => state.sideBarMenuReducer);
   const isCartOpen = useSelector(isOpenSelector);
   const productCart = useSelector(productCarts)
-
   const combineValue = (!isMenuOpen && !isCartOpen);
-
   const dispatch = useDispatch();
   
 
@@ -211,4 +211,4 @@ function FixedMenu({ location, screenHeight }) {
   )
 }
 
-export default React.memo(FixedMenu);
+export default FixedMenu;

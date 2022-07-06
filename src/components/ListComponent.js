@@ -3,9 +3,8 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import BallotIcon from '@material-ui/icons/Ballot';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import React from 'react';
-import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({

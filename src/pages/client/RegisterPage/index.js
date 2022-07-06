@@ -340,7 +340,7 @@ function SignUp() {
               <div className={classes.socialButtonContainer}>
                 <Button 
                   className={classes.signupBtn}
-                  onClick={()=>handleNavigate("/techstoredeploy/login")}
+                  onClick={()=>handleNavigate("/login")}
                 >
                   Goto Login Page
                 </Button>
@@ -415,7 +415,7 @@ function SignUp() {
               <div className={classes.inputContainer}>
                 <Button
                   className={classes.loginBtn}
-                  onClick={()=>handleNavigate("/techstoredeploy/login")}
+                  onClick={()=>handleNavigate("/login")}
                 >
                   Login
                 </Button>

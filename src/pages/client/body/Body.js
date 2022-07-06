@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Body({ children, location, ...props }) {
   const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <Grid container spacing={1}>
@@ -67,4 +68,4 @@ function Body({ children, location, ...props }) {
   )
 }
 
-export default Body;
+export default React.memo(Body);

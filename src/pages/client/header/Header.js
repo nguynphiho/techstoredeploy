@@ -300,10 +300,10 @@ function Header() {
             className={classes.optionItem}
           >
             <Typography className={classes.mainOptionName}> Sign In/Sign Up</Typography>
-            <Typography className={classes.subOptionName} onClick={() => handleNavigate("/techstoredeploy/login")}>
+            <Typography className={classes.subOptionName} onClick={() => handleNavigate("/login")}>
               My Account
             </Typography>
-            <IconButton className={classes.iconButton} onClick={() => handleNavigate("/techstoredeploy/login")}>
+            <IconButton className={classes.iconButton} onClick={() => handleNavigate("/login")}>
               <AccountCircleIcon />
             </IconButton>
           </Grid>

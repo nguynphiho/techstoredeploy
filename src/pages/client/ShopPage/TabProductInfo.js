@@ -1,12 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
+import { makeStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import Tabs from '@material-ui/core/Tabs';
 import Comment from 'components/Comment';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import CommentForm from './CommentForm';
 
 function TabPanel(props) {

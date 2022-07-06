@@ -58,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
 
 function HomePage({ productIdCart }) {
   const classes = useStyles();
-
   return (
     <div className={classes.container}>
       <Grid container>

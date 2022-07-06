@@ -8,14 +8,11 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import TwoRowProducts from 'components/TwoRowProducts';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Grid as Grids, Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ProductCard from 'components/ProductCard';
 import { productsData } from '../../FakeData';
-import TwoRowProducts from 'components/TwoRowProducts';
 
 const useStyles = makeStyles((theme) => ({
   container: {

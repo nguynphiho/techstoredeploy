@@ -4,10 +4,10 @@ import { useLocation } from 'react-router-dom';
 import BreadcrumbCustom from 'components/BreadcrumbCustom';
 
 const useStyles = makeStyles(() => ({
-  title: {
-    fontSize: 20,
-    fontFamily: 'Lato',
-  },
+  // title: {
+  //   fontSize: 20,
+  //   fontFamily: 'Lato',
+  // },
 
   content: {
     background: 'white',

@@ -218,7 +218,7 @@ function Login() {
       <div className={classes.loginContainer}>
         <Button
           className={classes.backButton}
-          onClick={() => handleNavigate("/techstoredeploy/home")}
+          onClick={() => handleNavigate("/home")}
         >
           Home
         </Button>
@@ -304,7 +304,7 @@ function Login() {
         <div className={classes.inputContainer}>
           {/* <Typography className={classes.optionTitle}>Or Sign Up Using</Typography> */}
           <div className={classes.socialButtonContainer}>
-            <Button className={classes.signupBtn} onClick={() => handleNavigate("/techstoredeploy/signup")}>
+            <Button className={classes.signupBtn} onClick={() => handleNavigate("/signup")}>
               Sign Up
             </Button>
           </div>

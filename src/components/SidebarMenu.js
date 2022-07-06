@@ -1,19 +1,18 @@
-import React from 'react';
-import clsx from 'clsx';
 import { IconButton, makeStyles, Typography } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import Collapse from '@material-ui/core/Collapse';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
+import CloseIcon from '@material-ui/icons/Close';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
+import clsx from 'clsx';
 import { useWindowSize } from 'hooks/input.hooks';
-import CloseIcon from '@material-ui/icons/Close';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { toggleMenu } from 'redux/sidebarMenu/action';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,7 +1,6 @@
 import { Button, Grid, makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -145,4 +144,4 @@ function MenuComponent({ data, location }) {
   )
 }
 
-export default MenuComponent;
+export default React.memo(MenuComponent);

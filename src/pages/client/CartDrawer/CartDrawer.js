@@ -1,55 +1,30 @@
-import React from 'react';
-import { Drawer, IconButton, makeStyles, Typography, Button, Badge } from '@material-ui/core';
-import ShopIcon from '@material-ui/icons/Shop';
+import { Button, Drawer, IconButton, makeStyles, Typography } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import ShopIcon from '@material-ui/icons/Shop';
 import CartItem from 'components/CartItem';
+import { useWindowSize } from 'hooks/input.hooks';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toggleCart } from 'redux/cart/actions';
 import { isOpenSelector, productCarts } from 'redux/cart/selector';
 import ToCurrency from 'Utils/FormatNumber';
-import { useWindowSize } from 'hooks/input.hooks';
-import { toggleCart } from 'redux/cart/actions';
-import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     position: 'relative',
   },
+
   drawer: {
     zIndex: 999999,
-  },
-
-  cart: {
-    position: 'fixed',
-    boxShadow: '0px 0px 15px rgba(15, 23, 42, 0.5)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 999,
-    right: 20,
-    bottom: 20,
-    width: 50,
-    height: 50,
-    background: 'white',
-    borderRadius: 10,
-    transition: 'all ease-in-out .6s',
   },
 
   hideCartBtn: {
     transform: 'translateX(300px)'
   },
 
-  cartBtn: {
-
-  },
-
   icon: {
     fontSize: 32,
     color: '#f4a51c'
-  },
-
-  customBadge: {
-    background: 'black',
-    color: 'white',
   },
 
   shoppingCart: {
@@ -193,11 +168,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function CartDrawer({ screenHeight }) {
-
+function CartDrawer() {
   const isCartOpen = useSelector(isOpenSelector);
   const dispatch = useDispatch();
-
   const [width] = useWindowSize();
   const classes = useStyles({width});
   const [isOpen, setOpen] = React.useState(isCartOpen);
@@ -219,25 +192,6 @@ function CartDrawer({ screenHeight }) {
 
   return (
     <>
-      {
-        !isOpen && (
-          <div className={clsx(classes.cart,{
-            [classes.hideCartBtn]: screenHeight > 300, 
-          })}>
-            <IconButton className={classes.cartBtn} onClick={() => handleToggleDrawer(true)}>
-              <Badge 
-                badgeContent={cart.length}
-                color="error"
-                overlap="rectangular"
-                classes={{ badge: classes.customBadge }}
-              >
-                <ShopIcon className={classes.icon} />
-              </Badge>
-            </IconButton>
-          </div>
-        )
-      }
-
       <Drawer anchor="right" open={isOpen} onClose={() => handleToggleDrawer(false)} className={classes.drawer}>
         <div className={classes.shoppingCart}>
           <div className={classes.shopingCartHeader}>

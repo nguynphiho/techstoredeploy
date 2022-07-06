@@ -2,6 +2,7 @@ import React from 'react';
 import { IconButton, makeStyles } from '@material-ui/core';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import clsx from 'clsx';
+import { useScrollWindow } from 'hooks/input.hooks';
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -32,8 +33,9 @@ const useStyles = makeStyles(() => ({
 
 }));
 
-function ScrollTopButton({ screenHeight }) {
+function ScrollTopButton() {
   const classes = useStyles();
+  const { screenHeight } = useScrollWindow();
 
   const handleScrollTop = () => {
     console.log("scroll Top")

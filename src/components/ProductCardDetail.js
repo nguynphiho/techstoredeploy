@@ -182,6 +182,12 @@ function ProductCardDetail({ data, productIdCart }) {
   const classes = useStyles();
   const [thumbsSwiper, setThumbsSwiper] = React.useState(null);
   const [indexActive, setIndexActive] = React.useState(0);
+  const [quantity, setQuantity] = React.useState(1);
+
+  const getQuantity = (value) => {
+    setQuantity(value);
+  };
+
   const handleOnSlideChange = (swiper) => {
     setIndexActive(swiper.activeIndex);
   };
@@ -189,7 +195,7 @@ function ProductCardDetail({ data, productIdCart }) {
   const handleAddToCart = () => {
     const cartItem = {
       ...data,
-      quantity: 1,
+      quantity,
       totalPrice: data.newPrice,
     };
     dispatch(addProductCart(cartItem));
@@ -311,7 +317,7 @@ function ProductCardDetail({ data, productIdCart }) {
           {data.description}
         </div>
         <div className={classes.buttonContainer}>
-          <QuantityComponent />
+          <QuantityComponent onChangeValue={(value) => getQuantity(value)} />
           {
             productIdCart.includes(data.id) ? (
               <Button 

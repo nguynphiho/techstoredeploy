@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-function QuantityComponent() {
+function QuantityComponent({ onChangeValue }) {
   const classes = useStyles();
   const [quantity, setQuantity] = React.useState(1);
 
@@ -50,8 +50,8 @@ function QuantityComponent() {
   };
 
   React.useEffect(() => {
-    console.log(quantity);
-  }, [quantity]);
+    onChangeValue(quantity)
+  }, [onChangeValue, quantity]);
 
   return (
     <div className={classes.container}>
@@ -67,4 +67,4 @@ function QuantityComponent() {
   )
 }
 
-export default QuantityComponent;
+export default React.memo(QuantityComponent);

@@ -15,7 +15,6 @@ import { useSelector } from 'react-redux';
 import Login from 'pages/client/LoginPage';
 import SignUp from 'pages/client/RegisterPage';
 
-
 function App() {
   const productCart = useSelector(productCarts);
   const productIdcart = productCart.map(item => item.id);
@@ -57,4 +56,4 @@ function App() {
   );
 }
 
-export default React.memo(App);
+export default App;
