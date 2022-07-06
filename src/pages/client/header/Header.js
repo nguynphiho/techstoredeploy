@@ -303,7 +303,7 @@ function Header() {
             <Typography className={classes.subOptionName} onClick={() => handleNavigate("/techstoredeploy/login")}>
               My Account
             </Typography>
-            <IconButton className={classes.iconButton}>
+            <IconButton className={classes.iconButton} onClick={() => handleNavigate("/techstoredeploy/login")}>
               <AccountCircleIcon />
             </IconButton>
           </Grid>
