@@ -83,7 +83,7 @@ function CartItem({ data }) {
       setQuantity(event.target.value);
 
     } else {
-      setQuantity(1);
+      setQuantity(0);
     }
   };
 
@@ -119,8 +119,8 @@ function CartItem({ data }) {
       <div className={classes.total}>
         <div className={classes.quantityContainer}>
           <Typography className={classes.quantity}>Quantity &nbsp;</Typography>
-          <input type="number" onChange={handleChangeQuality} value={quantity}/>
-        </div>
+          <input type="number" onChange={handleChangeQuality} value={quantity === 0 ? "": quantity}/>
+        </div>          
         <div>
           <Typography className={classes.price}>${ToCurrency(data.totalPrice)}</Typography>
         </div>
