@@ -15,7 +15,6 @@ import MediaCard from './MediaCard';
 const useStyles = makeStyles((theme) => ({
   container: {
     position: 'relative',
-    marginTop: 20,
     padding: 10,
     background: 'white',
     borderRadius: 4,

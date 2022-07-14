@@ -14,6 +14,7 @@ import { productCarts } from 'redux/cart/selector';
 import { useSelector } from 'react-redux';
 import Login from 'pages/client/LoginPage';
 import SignUp from 'pages/client/RegisterPage';
+import ContactUs from 'pages/client/ContactUsPage';
 
 function App() {
   const productCart = useSelector(productCarts);
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <SignUp />
+          </Route>
+          <Route exact path="/contact-us">
+            <ContactUs />
           </Route>
           <MainClientPage>
             <Switch>

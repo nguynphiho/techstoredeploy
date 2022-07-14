@@ -9,7 +9,6 @@ import showcase6 from 'assets/images/product8.png';
 
 const useStyles = makeStyles(() => ({
   container: {
-    marginTop: 20,
     padding: 10,
     background: 'white',
     borderRadius: 4,
@@ -30,11 +29,13 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-function ShowCase() {
+function ShowCase({ collapse }) {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <Typography className={classes.title}> Show Case </Typography>
+      {
+        !collapse && <Typography className={classes.title}> Show Case </Typography>
+      }
       <Grid container>
         <Grid container item xs={6} justifyContent="center" >
           <Avatar className={classes.image} src={showcase1} />
@@ -42,10 +43,12 @@ function ShowCase() {
           <Avatar className={classes.image} src={showcase3} />
           <Avatar className={classes.image} src={showcase3} />
           <Avatar className={classes.image} src={showcase3} />
+          <Avatar className={classes.image} src={showcase3} />
         </Grid>
         <Grid container item xs={6} justifyContent="center">
           <Avatar className={classes.image} src={showcase4} />
           <Avatar className={classes.image} src={showcase5} />
+          <Avatar className={classes.image} src={showcase6} />
           <Avatar className={classes.image} src={showcase6} />
           <Avatar className={classes.image} src={showcase6} />
           <Avatar className={classes.image} src={showcase6} />

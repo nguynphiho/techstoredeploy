@@ -6,7 +6,6 @@ import { useWindowSize } from 'hooks/input.hooks';
 
 const useStyles = makeStyles(() => ({
   recommendContainer: {
-    marginTop: 20,
     padding: 10,
     background: 'white',
     borderRadius: 4,
@@ -20,7 +19,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function RecommendCard({ name, data }) {
+function RecommendCard({ name, data , collapse}) {
   const classes = useStyles();
   const [windowsWidth] = useWindowSize();
   const [containerWidth, setContainerWidth] = React.useState(0);
@@ -32,12 +31,14 @@ function RecommendCard({ name, data }) {
   
   return (
     <div className={clsx(classes.recommendContainer, name)}>
-      <Typography className={classes.title}> {name } </Typography>
-      <Grid container>
+      {
+        !collapse && <Typography className={classes.title}> {name} </Typography>
+      }
+      <div>
         {data.map(item => (
           <ItemProductRecommend item={item} key={item.id} containerWidth={containerWidth} />
         ))}
-      </Grid>
+      </div>
     </div>
   )
 }

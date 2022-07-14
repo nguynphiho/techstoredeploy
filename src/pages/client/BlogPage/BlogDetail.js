@@ -4,15 +4,12 @@ import { useLocation } from 'react-router-dom';
 import BreadcrumbCustom from 'components/BreadcrumbCustom';
 
 const useStyles = makeStyles(() => ({
-  // title: {
-  //   fontSize: 20,
-  //   fontFamily: 'Lato',
-  // },
 
   content: {
     background: 'white',
     boxShadow: '0px 10px 15px -3px rgba(15, 23, 42, 0.08)',
     padding: 20,
+    marginBottom: 20,
   },
 
   imageFrame: {

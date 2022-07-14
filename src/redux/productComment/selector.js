@@ -1,0 +1,1 @@
+export const getProductComments = (state) => (state.commentReducer.comments);

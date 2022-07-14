@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button, Checkbox, FormControlLabel, makeStyles, TextField, Typography, withStyles } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
+import { useDispatch } from 'react-redux';
+import { useInput } from 'hooks/input.hooks';
+import { addComment } from 'redux/productComment/actions';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -98,13 +101,40 @@ const CustomCheckbox = withStyles({
 })((props) => <Checkbox color="default" {...props} />);
 
 
-function CommentForm() {
+function CommentForm({ activeComment }) {
+  console.log(activeComment);
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const [value, setValue] = React.useState(2);
+  const [rating, setRating] = React.useState(2);
   const [checked, setChecked] = React.useState(false)
+
+  const { value: review, onChange: onChangeReview } = useInput();
+  const { value: name, onChange: onChangeName } = useInput();
+  const { value: email, onChange: onChangeEmail } = useInput();
+
+  const randomUserId = "user_"+(Math.random() + 1).toString(36).substring(7) 
+  + Math.floor(Math.random() * 1000);
 
   const handleChecked = (event) => {
     setChecked(event.target.checked);
+  };
+
+  const handleSubmit = () => {
+    const comment = {
+      id: Math.floor(Math.random() * 1000),
+      user: {
+        id: randomUserId,
+        username: "user_"+(Math.random() + 1).toString(36).substring(7),
+        avatar: null,
+        fullName: name,
+        email: email,
+      },
+      content: review,
+      createAt: new Date(),
+      parentId: activeComment ? activeComment : null,
+      rating,
+    }
+    dispatch(addComment(comment));
   };
 
   return (
@@ -120,9 +150,9 @@ function CommentForm() {
         <Typography className={classes.label}>Your rating*: &nbsp; </Typography>
         <Rating
           name="simple-controlled"
-          value={value}
+          value={rating}
           onChange={(event, newValue) => {
-            setValue(newValue);
+            setRating(newValue);
           }}
         />
       </div>
@@ -135,6 +165,8 @@ function CommentForm() {
             minRows={6}
             placeholder="Type your review here..."
             variant="outlined"
+            value={review}
+            onChange={onChangeReview}
           />
         </div>
         <div className={classes.inputBlock}>
@@ -144,6 +176,8 @@ function CommentForm() {
             placeholder="Name"
             variant="outlined"
             size="small"
+            value={name}
+            onChange={onChangeName}
           />
         </div>
         <div className={classes.inputBlock}>
@@ -153,6 +187,8 @@ function CommentForm() {
             placeholder="Email"
             variant="outlined"
             size="small"
+            value={email}
+            onChange={onChangeEmail}
           />
         </div>
         <div className={classes.saveInfoCheck}>
@@ -168,7 +204,12 @@ function CommentForm() {
           />
         </div>
         <div>
-          <Button className={classes.submitBtn}> Submit </Button>
+          <Button
+            className={classes.submitBtn}
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
         </div>
       </div>
     </div>

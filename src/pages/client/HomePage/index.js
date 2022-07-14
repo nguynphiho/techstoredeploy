@@ -85,7 +85,7 @@ function HomePage({ productIdCart }) {
         <Grid item xs={12} className={classes.cardContainer}>
           <DiscoveryNow />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.cardContainer}>
           <Brand />
         </Grid>
       </Grid>

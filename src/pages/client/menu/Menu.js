@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   callButton: {
-    marginRight: 20,
+    marginRight: 10,
     background: '#f4a51c',
     '&:hover': {
       background: '#df971a',
@@ -74,23 +74,7 @@ const menuData = [
     id: 4,
     label: 'Accessories',
     link: '/accessories',
-    subMenu: [
-      {
-        id: 1,
-        label: 'Menu Item 1',
-        link: '/accessories/item1'
-      },
-      {
-        id: 2,
-        label: 'Menu Item 2',
-        link: '/accessories/item2'
-      },
-      {
-        id: 3,
-        label: 'Menu Item 3',
-        link: '/accessories/item3'
-      },
-    ],
+    subMenu: [],
   },
   {
     id: 5,
@@ -102,23 +86,7 @@ const menuData = [
     id: 6,
     label: 'Contact Us',
     link: '/contact-us',
-    subMenu: [
-      {
-        id: 1,
-        label: "Via Phone",
-        link: "/contact-us/phone"
-      },
-      {
-        id: 2,
-        label: "Via Email",
-        link: "/contact-us/email"
-      },
-      {
-        id: 3,
-        label: "Via Social Media",
-        link: "/contact-us/social-medial"
-      },
-    ],
+    subMenu: [],
   },
   {
     id: 7,
@@ -137,7 +105,7 @@ const menuData = [
       },
       {
         id: 3,
-        label: "Pay $999 for 12 Month",
+        label: "Pay $899 for 12 Month",
         link: "/upgrage-to-pro/year"
       },
     ],
@@ -158,11 +126,11 @@ function Menu({ location }) {
         <Grid
           item
           xs={10}
-          sm={9}
-          md={10}
+          sm={8}
+          md={9}
           lg={10}
         >
-          <MenuComponent data={menuData} location={location}/>
+          <MenuComponent data={menuData} location={location} />
           <IconButton className={classes.iconMenu} onClick={() => openSideBarMenu(true)} >
             <MenuIcon />
             <Typography
@@ -179,15 +147,28 @@ function Menu({ location }) {
         <Grid
           item
           xs={2}
-          sm={3}
-          md={2}
+          sm={4}
+          md={3}
           lg={2}
           className={classes.contact}
         >
-          <IconButton className={classes.callButton}>
-            <PhoneInTalkIcon style={{ color: 'white' }} />
-          </IconButton>
-          <Typography className={classes.phoneNumber}>+8435 2642 497</Typography>
+          <a
+            href='tel:035 2642 497'
+            style={{
+              marginRight: 10,
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              textDecoration: 'none',
+              color: '#686868',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <IconButton className={classes.callButton}>
+              <PhoneInTalkIcon style={{ color: 'white' }} />
+            </IconButton>
+            <Typography className={classes.phoneNumber}>+8435 2642 497</Typography>
+          </a>
         </Grid>
       </Grid>
     </div>

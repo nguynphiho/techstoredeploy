@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     width: '100%',
     height: '100vh',
+    // [theme.breakpoints.down("xs")]: {
+    //   height: '100%',
+    // },
     backgroundImage: `url(${background})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',

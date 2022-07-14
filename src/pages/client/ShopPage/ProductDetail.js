@@ -6,6 +6,8 @@ import React from 'react';
 import TabProductInfo from './TabProductInfo';
 import { productsData } from 'pages/FakeData';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getProductComments } from 'redux/productComment/selector';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,8 +34,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ProductDetail({ productIdCart }) {
+  const productComments = useSelector(getProductComments);
+
   const classes = useStyles();
   const location = useLocation();
+
   React.useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -47,7 +52,7 @@ function ProductDetail({ productIdCart }) {
         <ProductCardDetail data={location.state.data} productIdCart={productIdCart}/>
       </div>
       <div className={classes.pageItem}>
-        <TabProductInfo />
+        <TabProductInfo productComments={productComments} />
       </div>
 
       <div className={classes.categories}>

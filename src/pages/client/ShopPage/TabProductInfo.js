@@ -5,8 +5,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Comment from 'components/Comment';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import CommentForm from './CommentForm';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -79,16 +79,28 @@ const useStyles = makeStyles((theme) => ({
 
   reviewer: {
     padding: 10,
-  }
+  },
+
+  commentItem: {
+    marginBottom: 10,
+  },
 
 }));
 
-export default function TabProductInfo() {
+export default function TabProductInfo({ productComments }) {
+  const rootComment = productComments.filter(item => item.parentId === null);
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const getReplies = (commentId) => {
+    return productComments
+    .filter(item => item.parentId === commentId)
+    .sort((a,b) =>
+      (new Date(a.createAt).getTime() - new Date(b.createAt).getTime())
+    );
   };
 
   return (
@@ -116,7 +128,13 @@ export default function TabProductInfo() {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div className={classes.reviewer}>
-          <Comment />
+          {
+            rootComment.map(comment => (
+              <div key={comment.id} className={classes.commentItem}>
+                <Comment comment={comment} replies={getReplies(comment.id)} currentUserId={1} />
+              </div>
+            ))
+          }
           <CommentForm />
         </div>
       </TabPanel>

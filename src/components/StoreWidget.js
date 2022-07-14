@@ -59,10 +59,10 @@ function StoreWidget() {
           className={classes.widget}
           alignItems="center"
         >
-          <Grid item xs={4} className={classes.iconContainer}>
+          <Grid item xs={3} sm={1} md={4} lg={4} className={classes.iconContainer}>
             <StarBorderIcon className={classes.icon} />
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={8} lg={8}>
             <Typography className={classes.primaryText}>Join risk free</Typography>
             <Typography className={classes.secondaryText}>30 days refunds</Typography>
           </Grid>
@@ -74,10 +74,10 @@ function StoreWidget() {
           className={classes.widget}
           alignItems="center"
         >
-          <Grid item xs={4} className={classes.iconContainer}>
+          <Grid item xs={3} sm={1} md={4} lg={4} className={classes.iconContainer}>
             <VerifiedUserIcon className={classes.icon} />
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={8} lg={8}>
             <Typography className={classes.primaryText}>100% Safe</Typography>
             <Typography className={classes.secondaryText}>Secure Shopping</Typography>
           </Grid>
@@ -89,10 +89,10 @@ function StoreWidget() {
           className={classes.widget}
           alignItems="center"
         >
-          <Grid item xs={4} className={classes.iconContainer}>
+          <Grid item xs={3} sm={1} md={4} lg={4} className={classes.iconContainer}>
             <LocalCafeIcon className={classes.icon} />
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={8} lg={8}>
             <Typography className={classes.primaryText}>24x7 Support</Typography>
             <Typography className={classes.secondaryText}>Online 24 hours</Typography>
           </Grid>
@@ -104,10 +104,10 @@ function StoreWidget() {
           className={classes.widget}
           alignItems="center"
         >
-          <Grid item xs={4} className={classes.iconContainer}>
+          <Grid item xs={3} sm={1} md={4} lg={4} className={classes.iconContainer}>
             <ShopIcon className={classes.icon} />
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={8} lg={8}>
             <Typography className={classes.primaryText}>Best Offers</Typography>
             <Typography className={classes.secondaryText}>Grab now</Typography>
           </Grid>
@@ -119,10 +119,10 @@ function StoreWidget() {
           className={classes.widget}
           alignItems="center"
         >
-          <Grid item xs={4} className={classes.iconContainer}>
+          <Grid item xs={3} sm={1} md={4} lg={4} className={classes.iconContainer}>
             <AirplanemodeActiveIcon className={classes.icon} />
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={8} lg={8}>
             <Typography className={classes.primaryText}>Free Shipping</Typography>
             <Typography className={classes.secondaryText}>On all order over</Typography>
           </Grid>

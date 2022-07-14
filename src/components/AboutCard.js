@@ -11,7 +11,6 @@ import avatar from 'assets/images/avatar.jpg';
 
 const useStyles = makeStyles(() => ({
   container: {
-    marginTop: 20,
     background: 'white',
     borderRadius: 4,
     boxShadow: '0px 10px 15px -3px rgba(15, 23, 42, 0.08)',

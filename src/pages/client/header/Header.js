@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
   branch: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between'
   },
   branchName: {
     fontSize: 32,
@@ -124,6 +125,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     '&:not(:last-child)': {
       borderRight: 'solid 1px white',
+      [theme.breakpoints.down("md")]: {
+        borderRight: 'none',
+      },
     }
   },
 
@@ -169,6 +173,7 @@ const useStyles = makeStyles((theme) => ({
 
   iconButton: {
     color: 'white',
+    transition: 'all ease-in-out .5s',
     '&:hover': {
       color: '#f4a51c',
       cursor: 'pointer'
@@ -182,6 +187,19 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     background: 'black',
   },
+
+  menuIcon: {
+    [theme.breakpoints.down("xs")]: {
+      display: 'none',
+    }
+  },
+
+  mobileMenuIcon: {
+    [theme.breakpoints.up("sm")]: {
+      display: 'none',
+    },
+  }
+
 }));
 
 function Header() {
@@ -238,6 +256,7 @@ function Header() {
         container
         className={classes.headerTwo}
       >
+        {/* brand */}
         <Grid
           item
           xs={12}
@@ -246,9 +265,70 @@ function Header() {
           lg={3}
           className={classes.branch}
         >
-          <Avatar variant='square' src={storeIcon}></Avatar>
-          <Typography className={classes.branchName}> Tech Store </Typography>
+          <div style={{ display: 'flex', alignItems:'center' }}>
+            <Avatar variant='square' src={storeIcon}></Avatar>
+            <Typography className={classes.branchName}> Tech Store </Typography>I
+          </div>
+          <Grid
+            item
+            container
+            justifyContent='center'
+            xs={4}
+            className={classes.mobileMenuIcon}
+          >
+            <Grid
+              item
+              xs={4}
+              className={classes.optionItem}
+            >
+              <Typography className={classes.mainOptionName}> My Favourite </Typography>
+              <Typography className={classes.subOptionName}>
+                Wishlist
+              </Typography>
+              <IconButton className={classes.iconButton}>
+                <FavoriteBorderIcon />
+              </IconButton>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              className={classes.optionItem}
+            >
+              <Typography className={classes.mainOptionName}> Sign In/Sign Up</Typography>
+              <Typography className={classes.subOptionName} onClick={() => handleNavigate("/login")}>
+                My Account
+              </Typography>
+              <IconButton className={classes.iconButton} onClick={() => handleNavigate("/login")}>
+                <AccountCircleIcon />
+              </IconButton>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              className={classes.optionItem}
+              onClick={() => clickOpen(true)}
+            >
+              <Badge
+                badgeContent={productCart.length}
+                overlap="rectangular"
+                className={classes.cartButton}
+                classes={{ badge: classes.customBadge }}
+              >
+                <LocalMallIcon />
+                {
+                  totalPrice > 0 && (
+                    <Typography
+                      className={classes.totalPrice}
+                    >
+                      ${ToCurrency(totalPrice)}
+                    </Typography>
+                  )
+                }
+              </Badge>
+            </Grid>
+          </Grid>
         </Grid>
+        {/* search input */}
         <Grid
           item
           xs={12}
@@ -272,6 +352,7 @@ function Header() {
             variant="outlined"
           />
         </Grid>
+        {/* three icons */}
         <Grid
           item
           container
@@ -280,6 +361,7 @@ function Header() {
           sm={3}
           md={3}
           lg={4}
+          className={classes.menuIcon}
         >
           <Grid
             item

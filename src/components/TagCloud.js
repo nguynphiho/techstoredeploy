@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   container: {
-    marginTop: 20,
     padding: 10,
     background: 'white',
     borderRadius: 4,
