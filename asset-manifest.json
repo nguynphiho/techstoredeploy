@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/techstoredeploy/static/css/main.42208225.css",
-    "main.js": "/techstoredeploy/static/js/main.6f1de023.js",
+    "main.css": "/techstoredeploy/static/css/main.e780db07.css",
+    "main.js": "/techstoredeploy/static/js/main.234bef1e.js",
     "static/js/787.da5b09fd.chunk.js": "/techstoredeploy/static/js/787.da5b09fd.chunk.js",
-    "static/media/background.jpg": "/techstoredeploy/static/media/background.d76cc3d18b62a77524e0.jpg",
     "static/media/product3.png": "/techstoredeploy/static/media/product3.59a74267524b3e6435ba.png",
+    "static/media/contactbackground.jpg": "/techstoredeploy/static/media/contactbackground.02f9eb46fbf3d3b7b893.jpg",
+    "static/media/background.jpg": "/techstoredeploy/static/media/background.3b4589b74a020ba94586.jpg",
     "static/media/product27.png": "/techstoredeploy/static/media/product27.cfa240c64ad2e385767b.png",
     "static/media/product1.png": "/techstoredeploy/static/media/product1.208d580e32faf4fe2188.png",
     "static/media/product12.png": "/techstoredeploy/static/media/product12.8e333d288d382d2d25b8.png",
@@ -40,12 +41,12 @@
     "static/media/twitter.png": "/techstoredeploy/static/media/twitter.28b4dce41e4e33858919.png",
     "static/media/banner-ad-sidebar-new.png": "/techstoredeploy/static/media/banner-ad-sidebar-new.dd1e2e194c7dbc0adc3f.png",
     "index.html": "/techstoredeploy/index.html",
-    "main.42208225.css.map": "/techstoredeploy/static/css/main.42208225.css.map",
-    "main.6f1de023.js.map": "/techstoredeploy/static/js/main.6f1de023.js.map",
+    "main.e780db07.css.map": "/techstoredeploy/static/css/main.e780db07.css.map",
+    "main.234bef1e.js.map": "/techstoredeploy/static/js/main.234bef1e.js.map",
     "787.da5b09fd.chunk.js.map": "/techstoredeploy/static/js/787.da5b09fd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.42208225.css",
-    "static/js/main.6f1de023.js"
+    "static/css/main.e780db07.css",
+    "static/js/main.234bef1e.js"
   ]
 }
